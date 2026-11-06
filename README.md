@@ -173,3 +173,5 @@
 ## เตรียมไฟล์ตั้งค่า
 
 คัดลอก `config.example.php` เป็น `config.php` แล้วตั้ง API keys ผ่าน environment variables หรือกรอกเฉพาะบนเครื่องของคุณ ไฟล์ `config.php` และข้อมูลใน `data/` จะไม่ถูกส่งขึ้น Git เพื่อป้องกันข้อมูลลับรั่วไหล
+
+# nextbeyond-AI
