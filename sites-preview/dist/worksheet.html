@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ตัวสร้างใบงานด้วย AI · ผู้ช่วยครู AI (Teacher AI Assistant)</title>
+<meta name="description" content="เครื่องมือช่วยครูวางแผนการสอน สร้างใบงาน เฉลย และข้อสอบด้วย AI">
+<meta property="og:title" content="ผู้ช่วยครู AI (Teacher AI Assistant)">
+<meta property="og:description" content="เครื่องมือช่วยครูวางแผนการสอน สร้างใบงาน เฉลย และข้อสอบด้วย AI">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<style>
+    .sites-preview-banner{position:sticky;top:0;z-index:9999;display:flex;justify-content:center;gap:10px;align-items:center;padding:8px 16px;background:#211747;color:#fff;font:14px/1.4 Sarabun,sans-serif;box-shadow:0 2px 12px #21174733}
+    .sites-preview-banner b{color:#ffd76a}.sites-preview-banner span{opacity:.9}
+    @media(max-width:640px){.sites-preview-banner{align-items:flex-start;flex-direction:column;gap:0}}
+  </style></head>
+<body class="sites-preview"><div class="sites-preview-banner" role="status">
+    <b>โหมดเว็บทดสอบ</b><span>ดูหน้าจอและทดลองกรอกข้อมูลได้ โดยยังไม่เชื่อม AI หรือฐานข้อมูลจริง</span>
+  </div>
+<div class="app">
+  <div id="jserr" class="error hidden"></div>
+  <div class="no-print">
+    <nav class="topnav no-print" id="topnav" aria-label="เมนูหลัก"><div class="navbar"><button type="button" class="burger" id="burger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navmenu"><span></span><span></span><span></span></button><span class="navtitle">สร้างใบงาน</span></div><div class="navscrim" id="navscrim"></div><div class="navmenu" id="navmenu"><a class="brand" href="home.html"><b>ผู้ช่วยครู AI</b><span>แผนการสอน ใบงาน และข้อสอบ</span></a><div class="navrow"><div class="navlabel">ขั้นตอนการทำงาน</div><a class="nl" href="home.html" title="ภาพรวม ขั้นตอนการใช้งาน และเช็กความพร้อมของระบบ"><span class="ic" aria-hidden="true">⌂</span><span>หน้าเริ่มต้น</span></a><a class="nl" href="term.html" title="วางหัวข้อรายสัปดาห์ทั้งภาคเรียน"><span class="ic" aria-hidden="true">1</span><span>แผนภาคเรียน</span></a><a class="nl" href="lplan.html" title="ให้ AI ร่างแผนการจัดการเรียนรู้ของแต่ละเรื่อง (แกนหลักของบทเรียน)"><span class="ic" aria-hidden="true">2</span><span>แผนการสอน</span></a><a class="nl on" href="worksheet.html" title="สร้างใบงาน เฉลย ใบความรู้ ตามแผนการสอน แล้วพิมพ์เป็น PDF" aria-current="page"><span class="ic" aria-hidden="true">3</span><span>สร้างใบงาน</span></a><a class="nl" href="book.html" title="รวมใบงานหลายชุดเป็นเล่ม มีปก สารบัญ และเฉลย"><span class="ic" aria-hidden="true">4</span><span>รวมเล่ม</span></a><a class="nl" href="exam.html" title="สร้างข้อสอบกลางภาค/ปลายภาค พร้อมตารางวิเคราะห์ กระดาษคำตอบ และเฉลย"><span class="ic" aria-hidden="true">5</span><span>ข้อสอบ</span></a></div><div class="navrow"><div class="navlabel">คลังและเครื่องมือ</div><a class="nl" href="diagrams.html" title="คลังและเครื่องมือสร้างแผนภาพสื่อการสอน โหมดข้อสอบ/เฉลย และ AI"><span class="ic" aria-hidden="true">🎨</span><span>สตูดิโอแผนภาพ</span></a><a class="nl" href="saved.html" title="ชุดใบงานที่สร้างไว้ จัดหมวด ค้นหา ส่งออก"><span class="ic" aria-hidden="true">🗂</span><span>คลังใบงาน</span></a><a class="nl" href="bank.html" title="โจทย์รายข้อ เลือกมาประกอบเป็นชุดใหม่"><span class="ic" aria-hidden="true">🧩</span><span>คลังข้อสอบ</span></a><a class="nl" href="library.html" title="อัปโหลดหนังสือเรียน/บทอ่านให้ AI ใช้อ้างอิง"><span class="ic" aria-hidden="true">📚</span><span>คลังเอกสาร</span></a><a class="nl" href="curriculum.html" title="นำเข้าและจัดการตัวชี้วัดของหลักสูตร"><span class="ic" aria-hidden="true">🎯</span><span>ตัวชี้วัด</span></a><a class="nl" href="settings.html" title="ใส่คีย์ และเลือกผู้ให้บริการ/โมเดลของแต่ละเมนู"><span class="ic" aria-hidden="true">⚙️</span><span>ตั้งค่า AI</span></a><a class="nl" href="check-setup.html" title="ตรวจว่าไฟล์ครบ เขียนข้อมูลได้ และตั้งค่า AI แล้ว"><span class="ic" aria-hidden="true">🩺</span><span>ตรวจระบบ</span></a></div><div class="navfoot">ผลงานจาก AI ครูควรตรวจทานก่อนใช้ทุกครั้ง</div></div></nav><script>(function(){var n=document.getElementById("topnav"),b=document.getElementById("burger");if(!n||!b)return;function set(o){n.classList.toggle("open",o);b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"ปิดเมนู":"เปิดเมนู");document.documentElement.classList.toggle("nav-lock",o);}b.addEventListener("click",function(){set(!n.classList.contains("open"));});document.getElementById("navscrim").addEventListener("click",function(){set(false);});n.addEventListener("click",function(e){if(e.target.closest("a.nl"))set(false);});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){set(false);b.focus();}});window.addEventListener("resize",function(){if(innerWidth>960)set(false);});})();</script>
+    <div class="row" style="justify-content:space-between">
+      <h1>สร้างใบงาน</h1>
+    </div>
+    <p class="sub">บอกเรื่องที่จะสอน เลือกจำนวนใบและรูปแบบโจทย์ แล้วกดสร้าง จะได้ใบงาน เฉลย และภาพประกอบพร้อมพิมพ์เป็น PDF</p>
+
+    <div class="panel form">
+      <section class="sec">
+        <h2 class="sec-h"><span class="no">1</span>เรื่องที่จะสอน</h2>
+        <div class="grid">
+        <label class="f">ชั้น
+          <select id="grade">
+            <option>ป.1</option><option selected>ป.2</option><option>ป.3</option><option>ป.4</option><option>ป.5</option><option>ป.6</option><option>ม.1</option><option>ม.2</option><option>ม.3</option><option>ม.4</option><option>ม.5</option><option>ม.6</option>
+          </select>
+        </label>
+        <label class="f">วิชา
+          <select id="subject"><option selected>วิทยาศาสตร์และเทคโนโลยี</option></select>
+        </label>
+        <label class="f">ภาคเรียน
+          <select id="termSel"><option value="">ทุกภาคเรียน</option><option value="1">ภาคเรียนที่ 1</option><option value="2">ภาคเรียนที่ 2</option></select>
+        </label>
+        </div>
+        <div class="grid" style="margin-top:16px">
+        <label class="f">หน่วยการเรียนรู้
+          <select id="unit"><option value="">— เลือกหน่วยการเรียนรู้ —</option></select>
+        </label>
+        <label class="f">หัวข้อของใบงาน
+          <input type="text" id="topic" value="วัฏจักรของพืช">
+        </label>
+        <div id="lpBar" class="hidden lpbar" style="grid-column:1/-1">📝 สร้างตามแผนการจัดการเรียนรู้: <b id="lpTitle"></b> <a id="lpOpen" href="#" style="color:var(--pink)">เปิดแผน</a> <button type="button" class="ghost small" id="lpClear">เลิกใช้แผนนี้</button><div style="font-size:12px;color:var(--muted)">ใบงานและใบความรู้จะยึดสาระสำคัญ จุดประสงค์ และสาระการเรียนรู้ของแผนนี้</div></div>
+        </div>
+        <p class="help">เลือกหน่วยการเรียนรู้แล้วระบบเติมหัวข้อให้ แก้ไขหรือพิมพ์หัวข้อเองได้</p>
+      </section>
+
+      <section class="sec">
+        <h2 class="sec-h"><span class="no">2</span>ชุดใบงาน</h2>
+        <div class="grid">
+        <label class="f">จำนวนใบงาน (1–20)
+          <input type="number" id="count" min="1" max="20" value="4">
+        </label>
+        <label class="f">ข้อต่อใบ (3–20)
+          <input type="number" id="itemCount" min="3" max="20" value="5">
+        </label>
+        <label class="f">ระดับความยาก
+          <select id="difficulty">
+            <optgroup label="ระดับเดียวทั้งใบ">
+              <option value="easy">ง่าย</option>
+              <option value="medium" selected>ปานกลาง</option>
+              <option value="hard">ยาก</option>
+              <option value="expert">ยากมาก</option>
+            </optgroup>
+            <optgroup label="ผสมหลายระดับ (แบ่งจำนวนข้อตามสัดส่วน)">
+              <option value="mix:review">ทบทวน (ง่าย 50 / กลาง 40 / ยาก 10)</option>
+              <option value="mix:std">มาตรฐาน (ง่าย 20 / กลาง 50 / ยาก 30)</option>
+              <option value="mix:exam">เตรียมสอบ (ง่าย 10 / กลาง 30 / ยาก 40 / ยากมาก 20)</option>
+              <option value="mix:contest">แข่งขัน (กลาง 20 / ยาก 40 / ยากมาก 40)</option>
+              <option value="mix:custom">กำหนดสัดส่วนเอง…</option>
+            </optgroup>
+          </select>
+        </label>
+        </div>
+        <div id="mixBox" class="hidden" style="margin-top:10px">
+        <div class="row">
+          <span style="font-size:14px;font-weight:600">สัดส่วนข้อ (%)</span>
+          <label style="font-size:13px;font-weight:400">ง่าย <input type="number" id="mixEasy" min="0" max="100" value="20" style="width:70px"></label>
+          <label style="font-size:13px;font-weight:400">ปานกลาง <input type="number" id="mixMedium" min="0" max="100" value="40" style="width:70px"></label>
+          <label style="font-size:13px;font-weight:400">ยาก <input type="number" id="mixHard" min="0" max="100" value="30" style="width:70px"></label>
+          <label style="font-size:13px;font-weight:400">ยากมาก <input type="number" id="mixExpert" min="0" max="100" value="10" style="width:70px"></label>
+          <span id="mixSum" style="font-size:12px;color:var(--muted)"></span>
+        </div>
+      </div>
+        <label id="beyondRow" class="hidden" style="display:flex;gap:8px;align-items:center;font-weight:400;font-size:13px;margin-top:8px"><input type="checkbox" id="beyond"> ให้ข้อระดับ “ยากมาก” เกินขอบเขตเนื้อหาของชั้นได้ (เทียบข้อสอบแข่งขัน) ไม่ติ๊ก = ยากด้วยการคิด แต่อยู่ในเนื้อหาของชั้นนี้</label>
+        <div style="margin-top:18px;font-weight:600;font-size:14px">รูปแบบโจทย์ <span class="help" style="display:inline;margin:0">เลือกได้หลายแบบ ระบบสลับให้แต่ละใบ เปลี่ยนชั้นประถม/มัธยมแล้วระบบเลือกแบบที่เหมาะให้ใหม่</span></div>
+        <div class="types" id="types"><label class="chip on"><input type="checkbox" value="multiple_choice" checked> ปรนัย 4 ตัวเลือก</label><label class="chip on"><input type="checkbox" value="fill_blank" checked> เติมคำในช่องว่าง</label><label class="chip on"><input type="checkbox" value="matching" checked> จับคู่</label><label class="chip on"><input type="checkbox" value="true_false" checked> ถูก / ผิด</label><label class="chip on"><input type="checkbox" value="ordering" checked> เรียงลำดับ</label><label class="chip on"><input type="checkbox" value="short_answer" checked> ตอบสั้น</label><label class="chip on"><input type="checkbox" value="calculation" checked> คำนวณแสดงวิธีทำ</label><label class="chip on"><input type="checkbox" value="multi_statement" checked> ปรนัยเลือกข้อความถูก (1, 2, 3)</label><label class="chip on"><input type="checkbox" value="data_set" checked> ชุดคำถามจากข้อมูล/กราฟ</label><label class="chip on"><input type="checkbox" value="exam" checked> แบบทดสอบ 2 ตอน (ปรนัย+อัตนัย)</label></div>
+      </section>
+
+      <details class="sec" id="indBox" open>
+        <summary><h2 class="sec-h"><span class="no">3</span>ตัวชี้วัดที่ต้องการวัด <small id="indCount"></small></h2></summary>
+        <div id="indList" style="margin-top:8px;font-size:14px"></div>
+        <div class="row" style="margin-top:6px;font-size:13px">
+          <button type="button" class="ghost small" id="indAll">เลือกทั้งหมด</button>
+          <button type="button" class="ghost small" id="indNone">ไม่เลือก</button>
+          <label style="font-weight:400;display:flex;gap:6px;align-items:center"><input type="checkbox" id="showInd" checked> พิมพ์รหัสตัวชี้วัดในใบงาน</label>
+          <a href="curriculum.html" style="color:var(--pink)">จัดการตัวชี้วัด</a>
+        </div>
+      </details>
+
+      <details class="sec">
+        <summary><h2 class="sec-h"><span class="no">4</span>ตัวเลือกเพิ่มเติม <small>รูปแบบเอกสาร รูปประกอบ ใบความรู้ บทอ่าน หัวกระดาษ</small></h2></summary>
+        <div class="grid">
+        <label class="f">รูปแบบเอกสาร
+          <select id="docStyle">
+            <option value="auto" selected>อัตโนมัติตามชั้น (ป. = น่ารัก, ม. = ทางการ)</option>
+            <option value="kid">น่ารัก (ประถม)</option>
+            <option value="formal">ทางการ (มัธยม)</option>
+          </select>
+        </label>
+        <label class="f">รูปประกอบ (กราฟ แผนภาพ ตาราง)
+          <select id="figureMode">
+            <option value="code" selected>ระบบวาดกราฟ/แผนภาพเอง (แม่นยำ) + AI วาดภาพทั่วไป</option>
+            <option value="ai">ให้ AI สร้างภาพทั้งหมด</option>
+            <option value="none">ไม่ใช้รูปประกอบ</option>
+          </select>
+        </label>
+        <label class="f">บทอ่านจากคลังเอกสาร (ใส่ตรงตามต้นฉบับ)
+          <select id="passage"><option value="">— ไม่ใช้บทอ่าน —</option></select>
+        </label>
+        <label class="f">เอกสารอ้างอิงจากคลัง
+          <select id="refMode">
+            <option value="auto" selected>ใช้ท่อนที่เกี่ยวข้องอัตโนมัติ (ตามชั้น/วิชา)</option>
+            <option value="off">ไม่ใช้</option>
+          </select>
+        </label>
+        </div>
+        <div id="passNote" class="help">บทอ่านที่เลือกจะใช้กับทุกใบในชุดนี้ AI สร้างเฉพาะคำถามจากบทอ่าน (เพิ่มบทอ่านได้ที่ <a href="library.html">คลังเอกสาร</a>)</div>
+        <label class="check" style="margin-top:14px"><input type="checkbox" id="withLesson"> สร้างใบความรู้ (บทเรียน) คู่กับใบงานทุกใบ</label>
+        <div id="hdrBox" style="margin-top:18px">
+          <div style="font-weight:600;font-size:14px;margin-bottom:8px">หัวกระดาษ <span class="help" style="display:inline">ใช้กับสไตล์ทางการและแบบทดสอบ</span></div>
+          <div class="grid">
+          <label class="f">ชื่อโรงเรียน<input type="text" id="hSchool" maxlength="120" placeholder="เช่น โรงเรียน…วิทยา"></label>
+          <label class="f">รหัสวิชา<input type="text" id="hCourse" maxlength="30" placeholder="เช่น ว30201"></label>
+          <label class="f">ชื่อครูผู้สอน<input type="text" id="hTeacher" maxlength="80" placeholder="เช่น นาย…"></label>
+          <label class="f">เวลาสอบ (นาที)<input type="number" id="hMinutes" min="0" max="300" placeholder="สำหรับแบบทดสอบ"></label>
+          </div>
+        </div>
+      </details>
+
+      <details class="sec" id="aiBox">
+        <summary><h2 class="sec-h"><span class="no">5</span>AI ที่ใช้ <small id="aiSummary">OpenAI GPT</small></h2></summary>
+        <div class="grid">
+        <label class="f">AI สร้างเนื้อหา + ตรวจทาน
+          <select id="textProvider">
+            <option value="gemini">Google Gemini</option><option value="openai" selected>OpenAI GPT</option><option value="openrouter">OpenRouter</option>
+          </select>
+        </label>
+        <label class="f">AI สร้างภาพ
+          <select id="imageProvider">
+            <option value="gemini">Google Gemini</option><option value="openai" selected>OpenAI GPT</option><option value="openrouter">OpenRouter</option>
+          </select>
+        </label>
+        </div>
+        <label class="check" style="margin-top:14px"><input type="checkbox" id="doReview" checked> ให้ AI ตรวจทานเฉลยอีกรอบ</label>
+        <p class="help">สามารถตั้งค่าผู้ให้บริการ/โมเดลและใส่ API Key ได้ที่ <a href="settings.html">ตั้งค่า AI</a></p>
+      </details>
+
+      <div class="actionbar">
+        <button id="startBtn" class="big">สร้างใบงาน</button>
+        <button id="stopBtn" type="button" class="stopBtn big ghost hidden" title="หยุดการสร้างทันที">⏹ หยุด</button>
+        <p class="help">สร้างทีละใบ เห็นผลทันทีด้านล่าง ระบบบันทึกชุดให้อัตโนมัติ</p>
+      </div>
+    </div>
+
+    <details class="panel" id="savedBox" style="margin-top:14px">
+      <summary style="cursor:pointer;font-weight:600">ชุดใบงานที่บันทึกไว้ล่าสุด <span id="savedCount" style="font-weight:400;color:var(--muted)"></span></summary>
+      <div id="savedList" style="margin-top:10px;font-size:14px">กำลังโหลด…</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px">ระบบบันทึกชุดใบงานให้อัตโนมัติเมื่อสร้างเสร็จ เปิดกลับมาแก้/พิมพ์ได้ภายหลัง</div>
+    </details>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="toolbar" class="panel hidden">
+      <div class="row" style="justify-content:space-between">
+        <strong id="progressText"></strong>
+        <div class="row">
+          <button type="button" class="stopBtn ghost hidden">⏹ หยุด</button>
+          <button id="viewBoth" title="พิมพ์/บันทึก PDF เป็นไฟล์เดียว">ใบงาน + เฉลย</button>
+          <button id="viewWs" class="ghost">ใบงาน</button>
+          <button id="viewAns" class="ghost">เฉลย</button>
+          <button id="retryImgs" class="ghost hidden">ลองสร้างภาพที่ขาดใหม่</button>
+          <button id="printBtn">พิมพ์ / บันทึกเป็น PDF</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="appendBtn" class="ghost small">＋ สร้างเพิ่มต่อท้าย</button>
+        <button id="regenAllBtn" class="ghost small">↻ สร้างทั้งชุดใหม่</button>
+        <button id="copyBtn" class="ghost small">⧉ บันทึกเป็นสำเนาใหม่</button>
+        <button id="onlineWsBtn" type="button" class="ghost small" style="background:#eff6ff;color:#1d4ed8;border-color:#93c5fd;font-weight:700">🌐 แปลงเป็นข้อสอบออนไลน์</button>
+        <a href="book.html" class="small" style="font-size:13px;font-weight:600;color:var(--pink)">📖 รวมเป็นเล่ม</a>
+      </div>
+      <div id="onlineWsBox" class="hidden" style="margin-top:10px;padding:10px 12px;background:#eff6ff;border:1px solid #93c5fd;border-radius:10px;font-size:13px"></div>
+      <div class="progress"><div id="progressBar" style="width:0"></div></div>
+      <div id="waitNote" style="font-size:13px;color:#7a5b00;min-height:1.2em"></div>
+      <div id="imgErr" style="font-size:13px;color:#b00020"></div>
+      <div id="saveNote" style="font-size:13px;color:var(--muted)"></div>
+    </div>
+  </div>
+
+  <div class="pages" id="pages"></div>
+</div>
+<script>
+window.SHEET_TYPES = [{"id":"multiple_choice","label":"ปรนัย 4 ตัวเลือก"},{"id":"fill_blank","label":"เติมคำในช่องว่าง"},{"id":"matching","label":"จับคู่"},{"id":"true_false","label":"ถูก / ผิด"},{"id":"ordering","label":"เรียงลำดับ"},{"id":"short_answer","label":"ตอบสั้น"},{"id":"calculation","label":"คำนวณแสดงวิธีทำ"},{"id":"multi_statement","label":"ปรนัยเลือกข้อความถูก (1, 2, 3)"},{"id":"data_set","label":"ชุดคำถามจากข้อมูล/กราฟ"},{"id":"exam","label":"แบบทดสอบ 2 ตอน (ปรนัย+อัตนัย)"}];
+window.TYPE_DEFAULTS = {
+  primary: ['multiple_choice', 'fill_blank', 'matching', 'true_false', 'ordering'],
+  secondary: ['multiple_choice', 'short_answer', 'calculation', 'multi_statement', 'data_set', 'exam']
+};
+window.LEVEL_PRESETS = {
+  std: { easy: 20, medium: 50, hard: 30, expert: 0 },
+  exam: { easy: 10, medium: 30, hard: 40, expert: 20 },
+  review: { easy: 50, medium: 40, hard: 10, expert: 0 },
+  contest: { easy: 0, medium: 20, hard: 40, expert: 40 }
+};
+</script>
+<script src="assets/js/data/curriculum.js"></script>
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/auto-render.min.js"></script>
+<script src="assets/js/shared/render.js"></script>
+<script src="assets/js/pages/app.js"></script>
+</body>
+</html>

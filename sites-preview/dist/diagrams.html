@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>สตูดิโอแผนภาพประกอบการสอน (Diagram Studio) · ผู้ช่วยครู AI</title>
+<meta name="description" content="คลังและเครื่องมือสร้างแผนภาพโครงสร้างทางวิชาการ มาตรฐานสากล พร้อมโหมดข้อสอบและโหมดเฉลย">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  :root {
+    --stage-bg: #f8fafc;
+    --border-subtle: #e2e8f0;
+    --accent-exam: #d97706;
+    --accent-teach: #059669;
+    --accent-primary: #4f46e5;
+  }
+  body {
+    background: #f1f5f9;
+    font-family: 'Sarabun', 'Mali', sans-serif;
+    color: #0f172a;
+    margin: 0;
+    padding: 0;
+  }
+  .ds-shell {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 20px 40px;
+  }
+  .ds-header {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+  }
+  .ds-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .ds-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ds-meta-line {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ds-meta-sep { color: #cbd5e1; }
+  
+  /* Two-Zone Layout: Left Stage (60-65%) and Right Control Deck (35-40%) */
+  .ds-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 1024px) {
+    .ds-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Left: Interactive Visual Stage */
+  .ds-stage-card {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 1px 4px rgba(15,23,42,0.04);
+  }
+  .ds-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  /* Segmented Mode Control */
+  .ds-mode-selector {
+    display: inline-flex;
+    background: #f1f5f9;
+    padding: 3px;
+    border-radius: 8px;
+    gap: 2px;
+  }
+  .ds-mode-btn {
+    border: none;
+    background: transparent;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .ds-mode-btn:hover { color: #0f172a; }
+  .ds-mode-btn.active-teach {
+    background: #ffffff;
+    color: #047857;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .ds-mode-btn.active-exam {
+    background: #ffffff;
+    color: #b45309;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  /* SVG Canvas Box */
+  .ds-canvas-wrap {
+    background: var(--stage-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ds-canvas-wrap svg {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.2s ease;
+  }
+  .ds-zoom-bar {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(4px);
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 2px;
+  }
+  .ds-zoom-btn {
+    border: none;
+    background: transparent;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #334155;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ds-zoom-btn:hover { background: #e2e8f0; }
+
+  /* Stage Action Strip */
+  .ds-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    align-items: center;
+  }
+  .btn-ds {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #1e293b;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn-ds:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+  }
+  .btn-ds.primary {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+  }
+  .btn-ds.primary:hover {
+    background: #4338ca;
+  }
+
+  /* Teaching & Bloom's Guide Box */
+  .ds-guide-box {
+    margin-top: 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #334155;
+    line-height: 1.5;
+  }
+  .ds-guide-title {
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Right: Control Deck & Catalog */
+  .ds-control-card {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 1px 4px rgba(15,23,42,0.04);
+  }
+  .ds-deck-tabs {
+    display: flex;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 14px;
+    gap: 16px;
+  }
+  .ds-deck-tab {
+    background: transparent;
+    border: none;
+    padding: 8px 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .ds-deck-tab:hover { color: #0f172a; }
+  .ds-deck-tab.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+  }
+
+  /* Catalog Filter & Search */
+  .ds-search-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .ds-input {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0f172a;
+  }
+  .ds-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(79,70,229,0.15);
+  }
+  .ds-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .ds-chip-btn {
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ds-chip-btn:hover { background: #e2e8f0; color: #0f172a; }
+  .ds-chip-btn.active {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: #ffffff;
+  }
+
+  /* Catalog Item List */
+  .ds-item-list {
+    max-height: 480px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 4px;
+  }
+  .ds-item-card {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ds-item-card:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+  }
+  .ds-item-card.is-active {
+    border-color: var(--accent-primary);
+    background: #eff6ff;
+  }
+  .ds-item-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ds-item-desc {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ds-item-meta {
+    font-size: 11px;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  /* AI Generator Box */
+  .ds-ai-box {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ds-ai-box.is-active { display: flex; }
+  .ds-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    min-height: 90px;
+    resize: vertical;
+    font-family: inherit;
+  }
+  .ds-ai-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .ds-select {
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  /* Toast notification */
+  .ds-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: all 0.2s ease;
+    z-index: 9999;
+  }
+  .ds-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+<style>
+    .sites-preview-banner{position:sticky;top:0;z-index:9999;display:flex;justify-content:center;gap:10px;align-items:center;padding:8px 16px;background:#211747;color:#fff;font:14px/1.4 Sarabun,sans-serif;box-shadow:0 2px 12px #21174733}
+    .sites-preview-banner b{color:#ffd76a}.sites-preview-banner span{opacity:.9}
+    @media(max-width:640px){.sites-preview-banner{align-items:flex-start;flex-direction:column;gap:0}}
+  </style></head>
+<body class="sites-preview"><div class="sites-preview-banner" role="status">
+    <b>โหมดเว็บทดสอบ</b><span>ดูหน้าจอและทดลองกรอกข้อมูลได้ โดยยังไม่เชื่อม AI หรือฐานข้อมูลจริง</span>
+  </div>
+<div class="ds-shell">
+  <nav class="topnav no-print" id="topnav" aria-label="เมนูหลัก"><div class="navbar"><button type="button" class="burger" id="burger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navmenu"><span></span><span></span><span></span></button><span class="navtitle">สตูดิโอแผนภาพ</span></div><div class="navscrim" id="navscrim"></div><div class="navmenu" id="navmenu"><a class="brand" href="home.html"><b>ผู้ช่วยครู AI</b><span>แผนการสอน ใบงาน และข้อสอบ</span></a><div class="navrow"><div class="navlabel">ขั้นตอนการทำงาน</div><a class="nl" href="home.html" title="ภาพรวม ขั้นตอนการใช้งาน และเช็กความพร้อมของระบบ"><span class="ic" aria-hidden="true">⌂</span><span>หน้าเริ่มต้น</span></a><a class="nl" href="term.html" title="วางหัวข้อรายสัปดาห์ทั้งภาคเรียน"><span class="ic" aria-hidden="true">1</span><span>แผนภาคเรียน</span></a><a class="nl" href="lplan.html" title="ให้ AI ร่างแผนการจัดการเรียนรู้ของแต่ละเรื่อง (แกนหลักของบทเรียน)"><span class="ic" aria-hidden="true">2</span><span>แผนการสอน</span></a><a class="nl" href="worksheet.html" title="สร้างใบงาน เฉลย ใบความรู้ ตามแผนการสอน แล้วพิมพ์เป็น PDF"><span class="ic" aria-hidden="true">3</span><span>สร้างใบงาน</span></a><a class="nl" href="book.html" title="รวมใบงานหลายชุดเป็นเล่ม มีปก สารบัญ และเฉลย"><span class="ic" aria-hidden="true">4</span><span>รวมเล่ม</span></a><a class="nl" href="exam.html" title="สร้างข้อสอบกลางภาค/ปลายภาค พร้อมตารางวิเคราะห์ กระดาษคำตอบ และเฉลย"><span class="ic" aria-hidden="true">5</span><span>ข้อสอบ</span></a></div><div class="navrow"><div class="navlabel">คลังและเครื่องมือ</div><a class="nl on" href="diagrams.html" title="คลังและเครื่องมือสร้างแผนภาพสื่อการสอน โหมดข้อสอบ/เฉลย และ AI" aria-current="page"><span class="ic" aria-hidden="true">🎨</span><span>สตูดิโอแผนภาพ</span></a><a class="nl" href="saved.html" title="ชุดใบงานที่สร้างไว้ จัดหมวด ค้นหา ส่งออก"><span class="ic" aria-hidden="true">🗂</span><span>คลังใบงาน</span></a><a class="nl" href="bank.html" title="โจทย์รายข้อ เลือกมาประกอบเป็นชุดใหม่"><span class="ic" aria-hidden="true">🧩</span><span>คลังข้อสอบ</span></a><a class="nl" href="library.html" title="อัปโหลดหนังสือเรียน/บทอ่านให้ AI ใช้อ้างอิง"><span class="ic" aria-hidden="true">📚</span><span>คลังเอกสาร</span></a><a class="nl" href="curriculum.html" title="นำเข้าและจัดการตัวชี้วัดของหลักสูตร"><span class="ic" aria-hidden="true">🎯</span><span>ตัวชี้วัด</span></a><a class="nl" href="settings.html" title="ใส่คีย์ และเลือกผู้ให้บริการ/โมเดลของแต่ละเมนู"><span class="ic" aria-hidden="true">⚙️</span><span>ตั้งค่า AI</span></a><a class="nl" href="check-setup.html" title="ตรวจว่าไฟล์ครบ เขียนข้อมูลได้ และตั้งค่า AI แล้ว"><span class="ic" aria-hidden="true">🩺</span><span>ตรวจระบบ</span></a></div><div class="navfoot">ผลงานจาก AI ครูควรตรวจทานก่อนใช้ทุกครั้ง</div></div></nav><script>(function(){var n=document.getElementById("topnav"),b=document.getElementById("burger");if(!n||!b)return;function set(o){n.classList.toggle("open",o);b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"ปิดเมนู":"เปิดเมนู");document.documentElement.classList.toggle("nav-lock",o);}b.addEventListener("click",function(){set(!n.classList.contains("open"));});document.getElementById("navscrim").addEventListener("click",function(){set(false);});n.addEventListener("click",function(e){if(e.target.closest("a.nl"))set(false);});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){set(false);b.focus();}});window.addEventListener("resize",function(){if(innerWidth>960)set(false);});})();</script>
+
+  <!-- Header Banner -->
+  <header class="ds-header">
+    <div class="ds-header-top">
+      <div>
+        <h1 class="ds-title">🎨 สตูดิโอแผนภาพประกอบการสอน (Teaching Diagram Studio & Catalog)</h1>
+        <div class="ds-meta-line">
+          <span>คลังแผนภาพเวกเตอร์ทางวิชาการ มาตรฐาน สพฐ. / สทศ.</span>
+          <span class="ds-meta-sep">·</span>
+          <span>สลับโหมดข้อสอบ (เว้นช่องว่าง) และโหมดเฉลย</span>
+          <span class="ds-meta-sep">·</span>
+          <span>ส่งออก SVG / PNG คมชัดสูง 100%</span>
+        </div>
+      </div>
+      <div>
+        <a href="exam.html" class="btn-ds primary">🚀 ไปยังหน้าสร้างข้อสอบ</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Two-Zone Educational Sandbox -->
+  <main class="ds-grid">
+    <!-- Left Stage: Interactive Diagram Canvas -->
+    <section class="ds-stage-card" aria-label="ผืนผ้าใบแผนภาพการสอน">
+      <div class="ds-toolbar">
+        <div>
+          <strong id="activeDiagramTitle" style="font-size:16px;color:#0f172a;">โครงสร้างเซลล์พืช 3 มิติตัดขวาง</strong>
+          <div id="activeDiagramMeta" class="ds-meta-line" style="margin-top:2px;">
+            <span id="activeSubjectBadge">วิทยาศาสตร์</span>
+            <span class="ds-meta-sep">·</span>
+            <span id="activeGradeBadge">ม.1 - ม.6</span>
+            <span class="ds-meta-sep">·</span>
+            <span id="activeStandardBadge">มฐ. ว 1.2 ม.1/1</span>
+          </div>
+        </div>
+
+        <!-- Mode Toggle Segmented Control -->
+        <div class="ds-mode-selector" role="radiogroup" aria-label="โหมดการแสดงผล">
+          <button type="button" id="btnModeTeach" class="ds-mode-btn active-teach" title="แสดงชื่อออร์แกเนลล์และคำอธิบายครบถ้วน">
+            <span>📖 โหมดเฉลย / การสอน</span>
+          </button>
+          <button type="button" id="btnModeExam" class="ds-mode-btn" title="เว้นช่องว่างและแสดงเฉพาะหมายเลขกำกับเพื่อใช้ทำข้อสอบ">
+            <span>📝 โหมดข้อสอบ (เว้นว่าง)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Wrap with SVG -->
+      <div class="ds-canvas-wrap" id="canvasWrap">
+        <div id="svgContainer" style="display:flex;justify-content:center;align-items:center;width:100%;">
+          <div style="color:#64748b;font-size:14px;padding:40px;">กำลังโหลดแผนภาพ...</div>
+        </div>
+        <!-- Zoom controls -->
+        <div class="ds-zoom-bar">
+          <button type="button" class="ds-zoom-btn" id="btnZoomIn" title="ขยาย">+</button>
+          <button type="button" class="ds-zoom-btn" id="btnZoomReset" title="รีเซ็ตขนาด">1:1</button>
+          <button type="button" class="ds-zoom-btn" id="btnZoomOut" title="ย่อ">-</button>
+        </div>
+      </div>
+
+      <!-- Action Strip -->
+      <div class="ds-actions">
+        <button type="button" class="btn-ds primary" id="btnExportPng" title="ดาวน์โหลดรูปภาพ PNG ความละเอียดสูง (Retina 2x)">
+          <span>⬇ ส่งออกรูปภาพ PNG (คมชัดสูง)</span>
+        </button>
+        <button type="button" class="btn-ds" id="btnDownloadSvg" title="ดาวน์โหลดไฟล์เวกเตอร์ SVG ไม่แตกเมื่อขยาย">
+          <span>⬇ ดาวน์โหลดไฟล์ SVG</span>
+        </button>
+        <button type="button" class="btn-ds" id="btnCopySvg" title="คัดลอกโค้ด SVG เพื่อนำไปวางในโปรแกรมอื่น">
+          <span>📋 คัดลอกโค้ด SVG</span>
+        </button>
+        <button type="button" class="btn-ds" id="btnInsertToExam" title="ส่งแผนภาพนี้ไปยังหน้าสร้างข้อสอบทันที">
+          <span>🧩 นำไปสร้างข้อสอบ</span>
+        </button>
+      </div>
+
+      <!-- Guide & Bloom's Taxonomy Box -->
+      <div class="ds-guide-box">
+        <div class="ds-guide-title">
+          <span>💡 แนวทางการนำไปใช้วัดและประเมินผล (Pedagogical Application)</span>
+        </div>
+        <div id="activeSampleQuestion" style="color:#1e293b;margin-bottom:4px;">
+          โจทย์แนะนำ: จากแผนภาพโครงสร้างเซลล์พืช หมายเลขใดทำหน้าที่สังเคราะห์ด้วยแสง และหมายเลขใดควบคุมการผ่านเข้าออกของสารตามลำดับ?
+        </div>
+        <div id="activeDescription" style="font-size:12px;color:#64748b;">
+          ออร์แกเนลล์สำคัญ: ① ผนังเซลล์ · ② เยื่อหุ้มเซลล์ · ③ นิวเคลียส · ④ แวคิวโอล · ⑤ คลอโรพลาสต์ · ⑥ ไมโทคอนเดรีย · ⑦ RER · ⑧ กอลจิบอดี · ⑨ พลาสโมเดสมาตา · ⑩ ไรโบโซม
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Control Deck & Curriculum Catalog -->
+    <aside class="ds-control-card" aria-label="แผงควบคุมและคลังแผนภาพ">
+      <div class="ds-deck-tabs">
+        <button type="button" class="ds-deck-tab active" id="tabCatalog">📚 คลังแผนภาพในหลักสูตร (35)</button>
+        <button type="button" class="ds-deck-tab" id="tabAi">🤖 สร้างด้วย AI (Prompt)</button>
+      </div>
+
+      <!-- Panel 1: Catalog -->
+      <div id="panelCatalog">
+        <!-- Search -->
+        <div class="ds-search-bar">
+          <input type="search" id="catalogSearch" class="ds-input" placeholder="🔍 ค้นหาหัวข้อ เช่น เซลล์พืช, หัวใจ, นิวตัน, พีทาโกรัส...">
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="ds-filter-chips" id="filterChips">
+          <button type="button" class="ds-chip-btn active" data-subject="all">ทั้งหมด</button>
+          <button type="button" class="ds-chip-btn" data-subject="science">วิทยาศาสตร์</button>
+          <button type="button" class="ds-chip-btn" data-subject="math">คณิตศาสตร์</button>
+          <button type="button" class="ds-chip-btn" data-subject="social">สังคมศึกษา</button>
+          <button type="button" class="ds-chip-btn" data-subject="thai">ภาษาไทย</button>
+          <button type="button" class="ds-chip-btn" data-subject="english">ภาษาอังกฤษ</button>
+          <button type="button" class="ds-chip-btn" data-subject="cs">วิทยาการคำนวณ</button>
+        </div>
+
+        <!-- Item List -->
+        <div class="ds-item-list" id="catalogList" role="list">
+          <div style="text-align:center;color:#64748b;padding:20px;">กำลังโหลดคลังแผนภาพ...</div>
+        </div>
+      </div>
+
+      <!-- Panel 2: AI Prompt Generator -->
+      <div id="panelAi" class="ds-ai-box">
+        <div>
+          <label style="font-size:13px;font-weight:700;color:#0f172a;display:block;margin-bottom:4px;">
+            คำอธิบายแผนภาพที่ต้องการให้ AI สร้าง (Prompt):
+          </label>
+          <textarea id="aiPrompt" class="ds-textarea" placeholder="เช่น 'ภาพตัดขวางลำต้นพืชใบเลี้ยงเดี่ยวและใบเลี้ยงคู่ แสดงท่อลำเลียงไซเลมและโฟลเอม' หรือ 'วัฏจักรน้ำในธรรมชาติ'"></textarea>
+        </div>
+
+        <div class="ds-ai-row">
+          <div>
+            <label style="font-size:12px;font-weight:600;color:#475569;display:block;margin-bottom:2px;">กลุ่มสาระการเรียนรู้</label>
+            <select id="aiSubject" class="ds-select" style="width:100%;">
+              <option value="วิทยาศาสตร์">วิทยาศาสตร์ (ชีวะ/เคมี/ฟิสิกส์)</option>
+              <option value="คณิตศาสตร์">คณิตศาสตร์ (เรขาคณิต/พีชคณิต)</option>
+              <option value="สังคมศึกษา">สังคมศึกษาและภูมิศาสตร์</option>
+              <option value="ภาษาไทย">ภาษาไทย</option>
+              <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
+              <option value="วิทยาการคำนวณ">วิทยาการคำนวณ</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:12px;font-weight:600;color:#475569;display:block;margin-bottom:2px;">ระดับชั้น</label>
+            <select id="aiGrade" class="ds-select" style="width:100%;">
+              <option value="ป.1 - ป.3">ประถมศึกษาตอนต้น</option>
+              <option value="ป.4 - ป.6">ประถมศึกษาตอนปลาย</option>
+              <option value="ม.1 - ม.3" selected>มัธยมศึกษาตอนต้น</option>
+              <option value="ม.4 - ม.6">มัธยมศึกษาตอนปลาย</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="button" class="btn-ds primary" id="btnGenerateAi" style="width:100%;justify-content:center;padding:10px 16px;">
+          <span>✨ สร้างแผนภาพใหม่ด้วย GPT</span>
+        </button>
+
+        <div style="font-size:12px;color:#64748b;line-height:1.4;background:#eff6ff;padding:10px;border-radius:6px;border:1px solid #bfdbfe;">
+          💡 <strong>เคล็ดลับ:</strong> แผนภาพที่สร้างด้วย AI จะรองรับทั้งโหมดข้อสอบ (Exam) และโหมดเฉลย (Teaching) สามารถดาวน์โหลดเป็น SVG และ PNG ความละเอียดสูงได้ทันที
+        </div>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<!-- Toast element -->
+<div id="dsToast" class="ds-toast">คัดลอกเรียบร้อยแล้ว</div>
+
+<!-- Hidden Canvas for high-res PNG export -->
+<canvas id="exportCanvas" style="display:none;"></canvas>
+
+<script>
+(() => {
+  let catalog = [];
+  let currentId = 'cell_diagram';
+  let currentMode = 'teach'; // 'teach' | 'exam'
+  let currentSvg = '';
+  let currentMeta = null;
+  let zoomLevel = 1.0;
+
+  const svgContainer = document.getElementById('svgContainer');
+  const catalogList = document.getElementById('catalogList');
+  const toast = document.getElementById('dsToast');
+  const canvas = document.getElementById('exportCanvas');
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // Load Diagram from API
+  async function loadDiagram(id, mode = currentMode) {
+    currentId = id;
+    currentMode = mode;
+    svgContainer.innerHTML = '<div style="color:#64748b;font-size:14px;padding:40px;">กำลังเรนเดอร์แผนภาพ...</div>';
+
+    try {
+      const res = await fetch(`/api/diagrams/render?id=${encodeURIComponent(id)}&mode=${mode}&format=json`);
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'ไม่สามารถโหลดแผนภาพได้');
+
+      currentSvg = data.svg;
+      currentMeta = data.metadata;
+      svgContainer.innerHTML = currentSvg;
+      applyZoom();
+
+      // Update header info
+      if (currentMeta) {
+        document.getElementById('activeDiagramTitle').textContent = currentMode === 'exam' ? currentMeta.titleTh + ' (โหมดข้อสอบ)' : currentMeta.titleTh;
+        document.getElementById('activeSubjectBadge').textContent = currentMeta.subjectLabel || 'วิชา';
+        document.getElementById('activeGradeBadge').textContent = currentMeta.gradeLevel || '';
+        document.getElementById('activeStandardBadge').textContent = currentMeta.standard || '';
+        document.getElementById('activeSampleQuestion').innerHTML = '<strong>โจทย์แนะนำ:</strong> ' + (currentMeta.sampleQuestion || '-');
+        document.getElementById('activeDescription').textContent = currentMeta.description || '';
+      }
+
+      // Update Mode button states
+      const btnTeach = document.getElementById('btnModeTeach');
+      const btnExam = document.getElementById('btnModeExam');
+      if (currentMode === 'exam') {
+        btnExam.className = 'ds-mode-btn active-exam';
+        btnTeach.className = 'ds-mode-btn';
+      } else {
+        btnTeach.className = 'ds-mode-btn active-teach';
+        btnExam.className = 'ds-mode-btn';
+      }
+
+      // Highlight in catalog list
+      document.querySelectorAll('.ds-item-card').forEach(card => {
+        card.classList.toggle('is-active', card.dataset.id === id);
+      });
+    } catch (err) {
+      svgContainer.innerHTML = `<div style="color:#ef4444;padding:20px;">เกิดข้อผิดพลาด: ${err.message}</div>`;
+    }
+  }
+
+  // Render Catalog Cards
+  function renderCatalog(items) {
+    if (!items.length) {
+      catalogList.innerHTML = '<div style="text-align:center;color:#64748b;padding:20px;">ไม่พบแผนภาพที่ตรงกับเงื่อนไข</div>';
+      return;
+    }
+
+    catalogList.innerHTML = items.map(item => `
+      <div class="ds-item-card ${item.id === currentId ? 'is-active' : ''}" data-id="${item.id}" role="button" tabindex="0">
+        <div class="ds-item-title">
+          <span>${item.titleTh}</span>
+          <span style="font-size:11px;font-weight:600;color:#6366f1;">${item.category}</span>
+        </div>
+        <div class="ds-item-desc">${item.description}</div>
+        <div class="ds-item-meta">
+          <span>${item.gradeLevel}</span>
+          <span class="ds-meta-sep">·</span>
+          <span>${item.standard}</span>
+        </div>
+      </div>
+    `).join('');
+
+    catalogList.querySelectorAll('.ds-item-card').forEach(card => {
+      card.addEventListener('click', () => {
+        loadDiagram(card.dataset.id, currentMode);
+      });
+    });
+  }
+
+  // Filter Catalog
+  function filterCatalog() {
+    const q = document.getElementById('catalogSearch').value.trim().toLowerCase();
+    const activeChip = document.querySelector('.ds-chip-btn.active');
+    const subject = activeChip ? activeChip.dataset.subject : 'all';
+
+    let filtered = catalog;
+    if (subject !== 'all') {
+      filtered = filtered.filter(d => d.subject === subject);
+    }
+    if (q) {
+      filtered = filtered.filter(d =>
+        d.titleTh.toLowerCase().includes(q) ||
+        d.titleEn.toLowerCase().includes(q) ||
+        d.description.toLowerCase().includes(q) ||
+        d.category.toLowerCase().includes(q) ||
+        d.standard.toLowerCase().includes(q)
+      );
+    }
+    renderCatalog(filtered);
+  }
+
+  // Zoom management
+  function applyZoom() {
+    const svgEl = svgContainer.querySelector('svg');
+    if (svgEl) {
+      svgEl.style.transform = `scale(${zoomLevel})`;
+      svgEl.style.transformOrigin = 'center center';
+    }
+  }
+
+  document.getElementById('btnZoomIn').addEventListener('click', () => {
+    zoomLevel = Math.min(2.0, zoomLevel + 0.15);
+    applyZoom();
+  });
+  document.getElementById('btnZoomOut').addEventListener('click', () => {
+    zoomLevel = Math.max(0.6, zoomLevel - 0.15);
+    applyZoom();
+  });
+  document.getElementById('btnZoomReset').addEventListener('click', () => {
+    zoomLevel = 1.0;
+    applyZoom();
+  });
+
+  // Mode Switch Handlers
+  document.getElementById('btnModeTeach').addEventListener('click', () => {
+    if (currentMode !== 'teach') {
+      loadDiagram(currentId, 'teach');
+    }
+  });
+  document.getElementById('btnModeExam').addEventListener('click', () => {
+    if (currentMode !== 'exam') {
+      loadDiagram(currentId, 'exam');
+    }
+  });
+
+  // Download SVG
+  document.getElementById('btnDownloadSvg').addEventListener('click', () => {
+    if (!currentSvg) return;
+    const blob = new Blob([currentSvg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${currentId}_${currentMode}.svg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('ดาวน์โหลดไฟล์เวกเตอร์ SVG สำเร็จ');
+  });
+
+  // Copy SVG Code
+  document.getElementById('btnCopySvg').addEventListener('click', () => {
+    if (!currentSvg) return;
+    navigator.clipboard.writeText(currentSvg).then(() => {
+      showToast('คัดลอกโค้ด SVG ไปยังคลิปบอร์ดแล้ว');
+    }).catch(() => {
+      showToast('ไม่สามารถคัดลอกโค้ดได้');
+    });
+  });
+
+  // Export High-Res PNG via HTML5 Canvas
+  document.getElementById('btnExportPng').addEventListener('click', () => {
+    if (!currentSvg) return;
+    const svgEl = svgContainer.querySelector('svg');
+    if (!svgEl) return;
+
+    const viewBox = svgEl.getAttribute('viewBox');
+    let width = 680, height = 440;
+    if (viewBox) {
+      const parts = viewBox.split(' ');
+      if (parts.length === 4) {
+        width = parseFloat(parts[2]) || width;
+        height = parseFloat(parts[3]) || height;
+      }
+    } else {
+      width = parseFloat(svgEl.getAttribute('width')) || width;
+      height = parseFloat(svgEl.getAttribute('height')) || height;
+    }
+
+    // 2x Retina scaling for ultra crisp print quality
+    const scale = 2.0;
+    canvas.width = width * scale;
+    canvas.height = height * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    const blob = new Blob([currentSvg], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
+    img.onload = () => {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const pngUrl = URL.createObjectURL(pngBlob);
+        const a = document.createElement('a');
+        a.href = pngUrl;
+        a.download = `${currentId}_${currentMode}@2x.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(pngUrl);
+        showToast('ส่งออกรูปภาพ PNG ความละเอียดสูง 2x สำเร็จ');
+      }, 'image/png');
+    };
+    img.src = url;
+  });
+
+  // Insert to Exam Bridge
+  document.getElementById('btnInsertToExam').addEventListener('click', () => {
+    if (!currentId) return;
+    // Save chosen diagram into sessionStorage so exam.html can pre-populate
+    sessionStorage.setItem('INJECTED_DIAGRAM_ID', currentId);
+    sessionStorage.setItem('INJECTED_DIAGRAM_MODE', currentMode);
+    if (currentMeta) {
+      sessionStorage.setItem('INJECTED_DIAGRAM_TITLE', currentMeta.titleTh);
+      sessionStorage.setItem('INJECTED_DIAGRAM_PROMPT', currentMeta.sampleQuestion || '');
+    }
+    window.location.href = `exam.html?useDiagram=${encodeURIComponent(currentId)}&mode=${currentMode}`;
+  });
+
+  // Deck Tabs (Catalog vs AI)
+  const tabCatalog = document.getElementById('tabCatalog');
+  const tabAi = document.getElementById('tabAi');
+  const panelCatalog = document.getElementById('panelCatalog');
+  const panelAi = document.getElementById('panelAi');
+
+  tabCatalog.addEventListener('click', () => {
+    tabCatalog.classList.add('active');
+    tabAi.classList.remove('active');
+    panelCatalog.style.display = 'block';
+    panelAi.classList.remove('is-active');
+  });
+
+  tabAi.addEventListener('click', () => {
+    tabAi.classList.add('active');
+    tabCatalog.classList.remove('active');
+    panelCatalog.style.display = 'none';
+    panelAi.classList.add('is-active');
+  });
+
+  // AI Prompt Generator Submit
+  const btnGenerateAi = document.getElementById('btnGenerateAi');
+  btnGenerateAi.addEventListener('click', async () => {
+    const prompt = document.getElementById('aiPrompt').value.trim();
+    if (!prompt) {
+      alert('กรุณากรอกคำอธิบายแผนภาพที่ต้องการให้ AI วาด');
+      return;
+    }
+
+    const subject = document.getElementById('aiSubject').value;
+    const grade = document.getElementById('aiGrade').value;
+
+    btnGenerateAi.disabled = true;
+    btnGenerateAi.textContent = '⏳ กำลังวาดแผนภาพด้วย GPT...';
+    svgContainer.innerHTML = '<div style="color:#4f46e5;font-size:14px;padding:40px;text-align:center;">🤖 กำลังประมวลผลคำสั่งและวาดโครงสร้างเวกเตอร์ด้วย AI...</div>';
+
+    try {
+      const res = await fetch('/api/diagrams/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt, subject, grade, mode: currentMode }),
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || 'AI สร้างแผนภาพไม่สำเร็จ');
+
+      currentSvg = data.svg;
+      svgContainer.innerHTML = currentSvg;
+      applyZoom();
+
+      document.getElementById('activeDiagramTitle').textContent = prompt;
+      document.getElementById('activeSubjectBadge').textContent = subject;
+      document.getElementById('activeGradeBadge').textContent = grade;
+      document.getElementById('activeStandardBadge').textContent = 'สร้างโดย AI';
+      document.getElementById('activeSampleQuestion').innerHTML = '<strong>คำสั่งที่ใช้:</strong> ' + prompt;
+      document.getElementById('activeDescription').textContent = 'แผนภาพเวกเตอร์ที่สร้างขึ้นใหม่ผ่าน GPT ตามคำสั่งครูผู้สอน';
+
+      showToast('สร้างแผนภาพด้วย AI สำเร็จแล้ว');
+    } catch (err) {
+      alert('เกิดข้อผิดพลาด: ' + err.message);
+      loadDiagram(currentId, currentMode);
+    } finally {
+      btnGenerateAi.disabled = false;
+      btnGenerateAi.textContent = '✨ สร้างแผนภาพใหม่ด้วย GPT';
+    }
+  });
+
+  // Filter Chips Listeners
+  document.querySelectorAll('.ds-chip-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.ds-chip-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterCatalog();
+    });
+  });
+
+  document.getElementById('catalogSearch').addEventListener('input', filterCatalog);
+
+  // Initialize
+  async function init() {
+    try {
+      const res = await fetch('/api/diagrams/catalog');
+      const data = await res.json();
+      if (data.ok && Array.isArray(data.catalog)) {
+        catalog = data.catalog;
+        renderCatalog(catalog);
+      }
+    } catch (e) {
+      console.warn('Failed to load catalog:', e);
+    }
+    loadDiagram(currentId, 'teach');
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

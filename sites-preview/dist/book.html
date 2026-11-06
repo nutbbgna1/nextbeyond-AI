@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>รวมใบงานเป็นเล่ม</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=1">
+<link rel="stylesheet" href="assets/css/book.css?v=1">
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<style>
+    .sites-preview-banner{position:sticky;top:0;z-index:9999;display:flex;justify-content:center;gap:10px;align-items:center;padding:8px 16px;background:#211747;color:#fff;font:14px/1.4 Sarabun,sans-serif;box-shadow:0 2px 12px #21174733}
+    .sites-preview-banner b{color:#ffd76a}.sites-preview-banner span{opacity:.9}
+    @media(max-width:640px){.sites-preview-banner{align-items:flex-start;flex-direction:column;gap:0}}
+  </style></head>
+<body class="sites-preview"><div class="sites-preview-banner" role="status">
+    <b>โหมดเว็บทดสอบ</b><span>ดูหน้าจอและทดลองกรอกข้อมูลได้ โดยยังไม่เชื่อม AI หรือฐานข้อมูลจริง</span>
+  </div>
+<div class="app">
+  <div id="jserr" class="error hidden"></div>
+  <div class="no-print">
+    <nav class="topnav no-print" id="topnav" aria-label="เมนูหลัก"><div class="navbar"><button type="button" class="burger" id="burger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navmenu"><span></span><span></span><span></span></button><span class="navtitle">รวมเล่ม</span></div><div class="navscrim" id="navscrim"></div><div class="navmenu" id="navmenu"><a class="brand" href="home.html"><b>ผู้ช่วยครู AI</b><span>แผนการสอน ใบงาน และข้อสอบ</span></a><div class="navrow"><div class="navlabel">ขั้นตอนการทำงาน</div><a class="nl" href="home.html" title="ภาพรวม ขั้นตอนการใช้งาน และเช็กความพร้อมของระบบ"><span class="ic" aria-hidden="true">⌂</span><span>หน้าเริ่มต้น</span></a><a class="nl" href="term.html" title="วางหัวข้อรายสัปดาห์ทั้งภาคเรียน"><span class="ic" aria-hidden="true">1</span><span>แผนภาคเรียน</span></a><a class="nl" href="lplan.html" title="ให้ AI ร่างแผนการจัดการเรียนรู้ของแต่ละเรื่อง (แกนหลักของบทเรียน)"><span class="ic" aria-hidden="true">2</span><span>แผนการสอน</span></a><a class="nl" href="worksheet.html" title="สร้างใบงาน เฉลย ใบความรู้ ตามแผนการสอน แล้วพิมพ์เป็น PDF"><span class="ic" aria-hidden="true">3</span><span>สร้างใบงาน</span></a><a class="nl on" href="book.html" title="รวมใบงานหลายชุดเป็นเล่ม มีปก สารบัญ และเฉลย" aria-current="page"><span class="ic" aria-hidden="true">4</span><span>รวมเล่ม</span></a><a class="nl" href="exam.html" title="สร้างข้อสอบกลางภาค/ปลายภาค พร้อมตารางวิเคราะห์ กระดาษคำตอบ และเฉลย"><span class="ic" aria-hidden="true">5</span><span>ข้อสอบ</span></a></div><div class="navrow"><div class="navlabel">คลังและเครื่องมือ</div><a class="nl" href="diagrams.html" title="คลังและเครื่องมือสร้างแผนภาพสื่อการสอน โหมดข้อสอบ/เฉลย และ AI"><span class="ic" aria-hidden="true">🎨</span><span>สตูดิโอแผนภาพ</span></a><a class="nl" href="saved.html" title="ชุดใบงานที่สร้างไว้ จัดหมวด ค้นหา ส่งออก"><span class="ic" aria-hidden="true">🗂</span><span>คลังใบงาน</span></a><a class="nl" href="bank.html" title="โจทย์รายข้อ เลือกมาประกอบเป็นชุดใหม่"><span class="ic" aria-hidden="true">🧩</span><span>คลังข้อสอบ</span></a><a class="nl" href="library.html" title="อัปโหลดหนังสือเรียน/บทอ่านให้ AI ใช้อ้างอิง"><span class="ic" aria-hidden="true">📚</span><span>คลังเอกสาร</span></a><a class="nl" href="curriculum.html" title="นำเข้าและจัดการตัวชี้วัดของหลักสูตร"><span class="ic" aria-hidden="true">🎯</span><span>ตัวชี้วัด</span></a><a class="nl" href="settings.html" title="ใส่คีย์ และเลือกผู้ให้บริการ/โมเดลของแต่ละเมนู"><span class="ic" aria-hidden="true">⚙️</span><span>ตั้งค่า AI</span></a><a class="nl" href="check-setup.html" title="ตรวจว่าไฟล์ครบ เขียนข้อมูลได้ และตั้งค่า AI แล้ว"><span class="ic" aria-hidden="true">🩺</span><span>ตรวจระบบ</span></a></div><div class="navfoot">ผลงานจาก AI ครูควรตรวจทานก่อนใช้ทุกครั้ง</div></div></nav><script>(function(){var n=document.getElementById("topnav"),b=document.getElementById("burger");if(!n||!b)return;function set(o){n.classList.toggle("open",o);b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"ปิดเมนู":"เปิดเมนู");document.documentElement.classList.toggle("nav-lock",o);}b.addEventListener("click",function(){set(!n.classList.contains("open"));});document.getElementById("navscrim").addEventListener("click",function(){set(false);});n.addEventListener("click",function(e){if(e.target.closest("a.nl"))set(false);});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){set(false);b.focus();}});window.addEventListener("resize",function(){if(innerWidth>960)set(false);});})();</script>
+    <div class="row" style="justify-content:space-between">
+      <h1>รวมใบงานเป็นเล่ม</h1>
+    </div>
+    <p class="sub">เลือกใบงานจากชุดที่บันทึกไว้ จัดลำดับ แล้วให้ AI ช่วยทำหน้าปก คำนำ และสารบัญ พร้อมเลขหน้า</p>
+
+    <div class="panel">
+      <strong>1) เลือกใบงานจากคลังใบงาน</strong>
+      <div class="row" style="margin-top:8px">
+        <input type="search" id="srcQ" placeholder="ค้นหาชื่อ/หัวข้อ" style="flex:1;min-width:160px">
+        <select id="srcGrade"><option value="">ทุกชั้น</option></select>
+        <select id="srcSubject"><option value="">ทุกวิชา</option></select>
+        <select id="srcTerm"><option value="">ทุกภาคเรียน</option><option value="1">ภาคเรียนที่ 1</option><option value="2">ภาคเรียนที่ 2</option></select>
+        <select id="srcStatus"><option value="">ทุกสถานะ</option></select>
+      </div>
+      <div id="srcList" style="margin-top:10px;font-size:14px">กำลังโหลด…</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px">กด “เลือกใบ” เพื่อติ๊กเฉพาะบางใบ หรือกด “เพิ่มทั้งชุด” ใบงานจะถูกคัดลอกเข้าเล่ม (ชุดต้นทางไม่ถูกแก้ไข)</div>
+    </div>
+
+    <div class="panel">
+      <div class="row" style="justify-content:space-between">
+        <strong>2) ใบงานในเล่ม <span id="entryCount" style="font-weight:400;color:var(--muted)"></span></strong>
+        <span class="row">
+          <label style="font-size:13px;font-weight:400;display:flex;gap:6px;align-items:center"><input type="checkbox" id="incLes" checked> ใส่ใบความรู้ก่อนใบงาน (ถ้ามี)</label>
+          <label style="font-size:13px;font-weight:400;display:flex;gap:6px;align-items:center"><input type="checkbox" id="incAns" checked> ใส่ส่วนเฉลยท้ายเล่ม</label>
+        </span>
+      </div>
+      <div id="entries" style="margin-top:8px"></div>
+      <div id="covBox" class="hidden" style="margin-top:10px;font-size:13px"></div>
+      <datalist id="chapterList"></datalist>
+      <div style="font-size:12px;color:var(--muted);margin-top:6px">ช่อง “หมวด” ใช้จัดกลุ่มในสารบัญ (ใบที่ติดกันและมีชื่อหมวดเดียวกันจะรวมเป็นหมวดเดียว) ปล่อยว่างได้</div>
+    </div>
+
+    <div class="panel">
+      <strong>3) ปก คำนำ และสารบัญ</strong>
+      <div class="grid" style="margin-top:10px">
+        <label class="f">AI สร้างข้อความ
+          <select id="textProvider">
+            
+              <option value=""></option>
+            
+          </select>
+        </label>
+        <label class="f">AI สร้างภาพปก
+          <select id="imageProvider">
+            
+              <option value=""></option>
+            
+          </select>
+        </label>
+      </div>
+      <div id="orBox" class="orbox hidden">
+        <div class="grid">
+          <label class="f">โมเดล OpenRouter สร้างข้อความ
+            <input type="text" id="orText" autocomplete="off" value="">
+          </label>
+          <label class="f">โมเดล OpenRouter สร้างภาพ
+            <input type="text" id="orImage" autocomplete="off" value="">
+          </label>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px">นำเข้า/ค้นหารายชื่อโมเดลได้ที่หน้าสร้างใบงาน ที่นี่พิมพ์ชื่อโมเดล (เช่น google/gemini-2.5-flash) ได้โดยตรง</div>
+      </div>
+
+      <div class="row" style="margin-top:14px">
+        <input type="text" id="aiHint" placeholder="ข้อเสนอแนะให้ AI (ไม่บังคับ) เช่น ภาษาสนุกสนาน ธีมสัตว์" style="flex:1;min-width:240px">
+        <button id="aiBtn">✨ ให้ AI ทำปก คำนำ สารบัญ</button>
+      </div>
+      <div id="aiNote" style="font-size:13px;min-height:1.2em;margin-top:6px"></div>
+
+      <div class="grid" style="margin-top:12px">
+        <label class="f">ชื่อเล่ม<input type="text" id="cTitle" maxlength="80"></label>
+        <label class="f">ชื่อรอง<input type="text" id="cSub" maxlength="120"></label>
+        <label class="f">คำขวัญบนปก<input type="text" id="cTag" maxlength="160"></label>
+        <label class="f">ชั้น / วิชา (แสดงบนปก)<input type="text" id="cClass" maxlength="120"></label>
+        <label class="f">โรงเรียน / ผู้จัดทำ (ไม่บังคับ)<input type="text" id="cAuthor" maxlength="120"></label>
+      </div>
+      <label class="f" style="margin-top:12px">คำนำ (ขึ้นย่อหน้าใหม่ด้วยการกด Enter)
+        <textarea id="cPreface" rows="5" maxlength="1800"></textarea>
+      </label>
+      <div class="row" style="margin-top:12px;align-items:flex-end">
+        <label class="f" style="flex:1;min-width:240px">คำบรรยายภาพปก (ภาษาอังกฤษ)
+          <input type="text" id="cImgPrompt" maxlength="250" placeholder="เช่น a happy child planting a seed">
+        </label>
+        <button id="coverImgBtn" class="ghost">สร้างภาพปก</button>
+        <button id="coverImgClear" class="ghost">ไม่ใช้ภาพปก</button>
+      </div>
+    </div>
+
+    <div class="panel" id="booksBox">
+      <details>
+        <summary style="cursor:pointer;font-weight:600">เล่มที่บันทึกไว้ <span id="bookCount" style="font-weight:400;color:var(--muted)"></span></summary>
+        <div id="bookList" style="margin-top:10px;font-size:14px">กำลังโหลด…</div>
+      </details>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+
+    <div id="toolbar" class="panel hidden">
+      <div class="row" style="justify-content:space-between">
+        <strong id="pageInfo"></strong>
+        <div class="row">
+          <button id="newBook" class="ghost small">เริ่มเล่มใหม่</button>
+          <button id="saveBtn" class="ghost">บันทึกเล่ม</button>
+          <button id="printBtn">พิมพ์ / บันทึกเป็น PDF</button>
+        </div>
+      </div>
+      <div id="saveNote" style="font-size:13px;color:var(--muted);margin-top:6px"></div>
+      <div style="font-size:13px;color:var(--muted)">ในหน้าต่างพิมพ์ให้เลือก “บันทึกเป็น PDF” ขนาด A4 ขอบ “ไม่มี” และติ๊ก “กราฟิกพื้นหลัง”</div>
+    </div>
+  </div>
+
+  <div class="pages" id="pages"></div>
+</div>
+<script>window.SHEET_TYPES = {"multiple_choice":"ปรนัย 4 ตัวเลือก","fill_blank":"เติมคำในช่องว่าง","matching":"จับคู่","true_false":"ถูก / ผิด","ordering":"เรียงลำดับ","short_answer":"ตอบสั้น","calculation":"คำนวณแสดงวิธีทำ","multi_statement":"ปรนัยเลือกข้อความถูก (1, 2, 3)","data_set":"ชุดคำถามจากข้อมูล/กราฟ","exam":"แบบทดสอบ 2 ตอน (ปรนัย+อัตนัย)"};</script>
+<script>
+window.addEventListener('error', function (e) {
+  var b = document.getElementById('jserr');
+  if (!b) return;
+  var t = e.target || {};
+  var u = t.src || t.href || '';
+  if (u && u.indexOf(location.origin) !== 0) return;
+  b.classList.remove('hidden');
+  b.textContent = (t.src || t.href)
+    ? 'โหลดไฟล์ไม่สำเร็จ: ' + (t.src || t.href) + ' (ตรวจสิทธิ์อ่านไฟล์ใน htdocs)'
+    : 'เกิดข้อผิดพลาดของหน้าเว็บ: ' + e.message + ' (' + String(e.filename || '').split('/').pop() + ':' + (e.lineno || '') + ')';
+}, true);
+</script>
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/auto-render.min.js"></script>
+<script src="assets/js/shared/render.js?v=1"></script>
+<script src="assets/js/pages/book.js?v=1"></script>
+</body>
+</html>

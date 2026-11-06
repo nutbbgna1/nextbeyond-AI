@@ -1,0 +1,673 @@
+- generic [ref=f3e2]:
+  - navigation "เมนูหลัก" [ref=f3e3]:
+    - generic [ref=f3e4]:
+      - link "ผู้ช่วยครู AI แผนการสอน ใบงาน และข้อสอบ" [ref=f3e5] [cursor=pointer]:
+        - /url: home.php
+        - generic [ref=f3e6]: ผู้ช่วยครู AI
+        - generic [ref=f3e7]: แผนการสอน ใบงาน และข้อสอบ
+      - generic [ref=f3e8]:
+        - generic [ref=f3e9]: ขั้นตอนการทำงาน
+        - link "หน้าเริ่มต้น" [ref=f3e10] [cursor=pointer]:
+          - /url: home.php
+          - generic [aria-hidden] [ref=f3e11]: ⌂
+        - link "แผนภาคเรียน" [ref=f3e13] [cursor=pointer]:
+          - /url: term.php
+          - generic [aria-hidden] [ref=f3e14]: "1"
+        - link "แผนการสอน" [ref=f3e16] [cursor=pointer]:
+          - /url: lplan.php
+          - generic [aria-hidden] [ref=f3e17]: "2"
+        - link "สร้างใบงาน" [ref=f3e19] [cursor=pointer]:
+          - /url: index.php
+          - generic [aria-hidden] [ref=f3e20]: "3"
+        - link "รวมเล่ม" [ref=f3e22] [cursor=pointer]:
+          - /url: book.php
+          - generic [aria-hidden] [ref=f3e23]: "4"
+        - link "ข้อสอบ" [ref=f3e25] [cursor=pointer]:
+          - /url: exam.php
+          - generic [aria-hidden] [ref=f3e26]: "5"
+      - generic [ref=f3e28]:
+        - generic [ref=f3e29]: คลังและเครื่องมือ
+        - link "คลังใบงาน" [ref=f3e30] [cursor=pointer]:
+          - /url: saved.php
+          - generic [aria-hidden] [ref=f3e31]: 🗂
+        - link "คลังข้อสอบ" [ref=f3e33] [cursor=pointer]:
+          - /url: bank.php
+          - generic [aria-hidden] [ref=f3e34]: 🧩
+        - link "คลังเอกสาร" [ref=f3e36] [cursor=pointer]:
+          - /url: library.php
+          - generic [aria-hidden] [ref=f3e37]: 📚
+        - link "ตัวชี้วัด" [ref=f3e39] [cursor=pointer]:
+          - /url: curriculum.php
+          - generic [aria-hidden] [ref=f3e40]: 🎯
+        - link "ตั้งค่า AI" [ref=f3e42] [cursor=pointer]:
+          - /url: settings.php
+          - generic [aria-hidden] [ref=f3e43]: ⚙️
+        - link "ตรวจระบบ" [ref=f3e45] [cursor=pointer]:
+          - /url: check_setup.php
+          - generic [aria-hidden] [ref=f3e46]: 🩺
+      - generic [ref=f3e48]: ผลงานจาก AI ครูควรตรวจทานก่อนใช้ทุกครั้ง
+  - heading "สร้างข้อสอบ" [level=1] [ref=f3e49]
+  - paragraph [ref=f3e50]: ตั้งจำนวนข้อและตัวชี้วัดที่ออกสอบ ระบบจะวางตารางวิเคราะห์ข้อสอบ (ตัวชี้วัด × ระดับความยาก) หยิบข้อจากคลังข้อสอบก่อน แล้วให้ AI สร้างเฉพาะข้อที่ยังขาด จากนั้นสลับข้อ/ตัวเลือกเป็นหลายชุด พิมพ์พร้อมกระดาษคำตอบและเฉลย ข้อสอบจาก AI ครูควรตรวจทานทุกข้อก่อนใช้จริง
+  - generic [ref=f3e51]:
+    - generic [ref=f3e52]:
+      - generic [ref=f3e53]:
+        - text: โรงเรียน (พิมพ์หัวกระดาษ)
+        - textbox "โรงเรียน (พิมพ์หัวกระดาษ)" [ref=f3e54]:
+          - /placeholder: เช่น โรงเรียนบ้านตัวอย่าง
+      - generic [ref=f3e55]:
+        - text: ประเภทข้อสอบ
+        - combobox "ประเภทข้อสอบ" [ref=f3e56]:
+          - option "กลางภาค"
+          - option "ปลายภาค" [selected]
+          - option "ท้ายหน่วย"
+          - option "ก่อนเรียน"
+          - option "หลังเรียน"
+      - generic [ref=f3e57]:
+        - text: ปีการศึกษา (พ.ศ.)
+        - textbox "ปีการศึกษา (พ.ศ.)" [ref=f3e58]: "2569"
+      - generic [ref=f3e59]:
+        - text: ชั้น
+        - combobox "ชั้น" [ref=f3e60]:
+          - option "ป.1"
+          - option "ป.2"
+          - option "ป.3"
+          - option "ป.4" [selected]
+          - option "ป.5"
+          - option "ป.6"
+          - option "ม.1"
+          - option "ม.2"
+          - option "ม.3"
+          - option "ม.4"
+          - option "ม.5"
+          - option "ม.6"
+      - generic [ref=f3e61]:
+        - text: วิชา
+        - combobox "วิชา" [ref=f3e62]:
+          - option "ภาษาไทย" [selected]
+          - option "คณิตศาสตร์"
+          - option "วิทยาศาสตร์และเทคโนโลยี"
+          - option "วิทยาการคำนวณ"
+          - option "สังคมศึกษา ศาสนา และวัฒนธรรม"
+          - option "ประวัติศาสตร์"
+          - option "สุขศึกษาและพลศึกษา"
+          - option "ศิลปะ"
+          - option "การงานอาชีพ"
+          - option "ภาษาอังกฤษ"
+      - generic [ref=f3e63]:
+        - text: ภาคเรียน
+        - combobox "ภาคเรียน" [ref=f3e64]:
+          - option "—" [selected]
+          - option "ภาคเรียนที่ 1"
+          - option "ภาคเรียนที่ 2"
+      - generic [ref=f3e65]:
+        - text: เวลาสอบ (นาที)
+        - spinbutton "เวลาสอบ (นาที)" [ref=f3e66]: "60"
+      - generic [ref=f3e67]:
+        - text: จำนวนชุดข้อสอบ (สลับข้อ)
+        - combobox "จำนวนชุดข้อสอบ (สลับข้อ)" [ref=f3e68]:
+          - option "1 ชุด" [selected]
+          - option "2 ชุด (ก ข)"
+          - option "3 ชุด (ก ข ค)"
+          - option "4 ชุด (ก ข ค ง)"
+      - generic [ref=f3e69]:
+        - text: ชื่อข้อสอบ
+        - textbox "ชื่อข้อสอบ" [ref=f3e70]:
+          - /placeholder: ว่างไว้ = ตั้งชื่ออัตโนมัติ
+    - heading "โครงสร้างข้อสอบ" [level=3] [ref=f3e71]
+    - table [ref=f3e72]:
+      - rowgroup [ref=f3e73]:
+        - row [ref=f3e74]:
+          - columnheader "ส่วน" [ref=f3e75]
+          - columnheader "จำนวนข้อ" [ref=f3e76]
+          - columnheader "คะแนนต่อข้อ" [ref=f3e77]
+          - columnheader "รวม" [ref=f3e78]
+      - rowgroup [ref=f3e79]:
+        - row [ref=f3e80]:
+          - cell "ปรนัย 4 ตัวเลือก" [ref=f3e81]
+          - cell [ref=f3e82]:
+            - spinbutton [ref=f3e83]: "20"
+          - cell [ref=f3e84]:
+            - spinbutton [ref=f3e85]: "1"
+          - cell "20" [ref=f3e86]
+        - row [ref=f3e87]:
+          - cell "ถูก / ผิด" [ref=f3e88]
+          - cell [ref=f3e89]:
+            - spinbutton [ref=f3e90]: "0"
+          - cell [ref=f3e91]:
+            - spinbutton [ref=f3e92]: "1"
+          - cell "—" [ref=f3e93]
+        - row [ref=f3e94]:
+          - cell "จับคู่ (นับเป็นคู่)" [ref=f3e95]
+          - cell [ref=f3e96]:
+            - spinbutton [ref=f3e97]: "0"
+          - cell [ref=f3e98]:
+            - spinbutton [ref=f3e99]: "1"
+          - cell "—" [ref=f3e100]
+        - row [ref=f3e101]:
+          - cell "อัตนัย (แสดงวิธีทำ)" [ref=f3e102]
+          - cell [ref=f3e103]:
+            - spinbutton [ref=f3e104]: "0"
+          - cell [ref=f3e105]:
+            - spinbutton [ref=f3e106]: "5"
+          - cell "—" [ref=f3e107]
+      - rowgroup [ref=f3e108]:
+        - row [ref=f3e109]:
+          - cell "คะแนนเต็มทั้งฉบับ" [ref=f3e110]
+          - cell "20" [ref=f3e111]
+    - heading "สัดส่วนความยาก" [level=3] [ref=f3e112]
+    - generic [ref=f3e113]:
+      - generic [ref=f3e114]:
+        - text: ชุดสัดส่วน
+        - combobox "ชุดสัดส่วน" [ref=f3e115]:
+          - option "มาตรฐาน (20/50/30/0)" [selected]
+          - option "ข้อสอบ (10/30/40/20)"
+          - option "ทบทวน (50/40/10/0)"
+          - option "แข่งขัน (0/20/40/40)"
+          - option "กำหนดเอง"
+      - generic [ref=f3e116]:
+        - text: ง่าย %
+        - spinbutton "ง่าย %" [ref=f3e117]: "20"
+      - generic [ref=f3e118]:
+        - text: ปานกลาง %
+        - spinbutton "ปานกลาง %" [ref=f3e119]: "50"
+      - generic [ref=f3e120]:
+        - text: ยาก %
+        - spinbutton "ยาก %" [ref=f3e121]: "30"
+      - generic [ref=f3e122]:
+        - text: ยากมาก %
+        - spinbutton "ยากมาก %" [ref=f3e123]: "0"
+    - heading "ตัวชี้วัดที่ออกสอบ (เลือก 4/4)" [level=3] [ref=f3e124]
+    - generic [ref=f3e125]:
+      - button "เลือกทั้งหมด" [ref=f3e126] [cursor=pointer]
+      - button "ล้าง" [ref=f3e127] [cursor=pointer]
+    - generic [ref=f3e128]:
+      - generic [ref=f3e129]:
+        - checkbox "ท 1.1 ป.4/1 อ่านออกเสียงและอ่านจับใจความสำคัญของเรื่องที่กำหนดได้ถูกต้อง" [checked] [ref=f3e130]
+        - generic [ref=f3e131]:
+          - code [ref=f3e132]: ท 1.1 ป.4/1
+          - text: อ่านออกเสียงและอ่านจับใจความสำคัญของเรื่องที่กำหนดได้ถูกต้อง
+      - generic [ref=f3e133]:
+        - checkbox "ท 1.1 ป.4/2 อธิบายความหมายของคำและข้อความที่อ่านอย่างถูกต้อง" [checked] [ref=f3e134]
+        - generic [ref=f3e135]:
+          - code [ref=f3e136]: ท 1.1 ป.4/2
+          - text: อธิบายความหมายของคำและข้อความที่อ่านอย่างถูกต้อง
+      - generic [ref=f3e137]:
+        - checkbox "ท 2.1 ป.4/1 เขียนสื่อสารและบรรยายข้อมูลได้อย่างชัดเจนและสร้างสรรค์" [checked] [ref=f3e138]
+        - generic [ref=f3e139]:
+          - code [ref=f3e140]: ท 2.1 ป.4/1
+          - text: เขียนสื่อสารและบรรยายข้อมูลได้อย่างชัดเจนและสร้างสรรค์
+      - generic [ref=f3e141]:
+        - checkbox "ท 4.1 ป.4/1 เข้าใจธรรมชาติของภาษาและหลักเกณฑ์การใช้ภาษาไทย" [checked] [ref=f3e142]
+        - generic [ref=f3e143]:
+          - code [ref=f3e144]: ท 4.1 ป.4/1
+          - text: เข้าใจธรรมชาติของภาษาและหลักเกณฑ์การใช้ภาษาไทย
+    - generic [ref=f3e145]:
+      - generic [ref=f3e146]:
+        - text: ขอบเขตเนื้อหาที่ออกสอบ (หน่วย/เรื่อง)
+        - textbox "ขอบเขตเนื้อหาที่ออกสอบ (หน่วย/เรื่อง)" [ref=f3e147]:
+          - /placeholder: ระบบใส่รายชื่อหน่วยให้อัตโนมัติ แก้ไขได้
+          - text: "การอ่านออกเสียงและอ่านจับใจความ, มาตราตัวสะกด, คำที่มี ร ล และคำควบกล้ำ, การเขียนสื่อสารและย่อความ, นิทานและวรรณคดีสำหรับเด็ก, การพูดและการฟังอย่างมีมารยาท, คำที่ใช้ ฤ ฤๅ, ชนิดของคำ: นาม สรรพนาม กริยา, ประโยคและส่วนประกอบของประโยค, การเขียนเรื่องจากภาพและจินตนาการ, สำนวนสุภาษิตและคำพังเพย, การอ่านบทร้อยกรองและท่องจำ"
+      - generic [ref=f3e148]:
+        - text: ข้อเสนอแนะเพิ่มเติมถึง AI (ไม่บังคับ)
+        - textbox "ข้อเสนอแนะเพิ่มเติมถึง AI (ไม่บังคับ)" [ref=f3e149]:
+          - /placeholder: เช่น เน้นโจทย์สถานการณ์ในชีวิตประจำวัน
+    - generic [ref=f3e150]:
+      - checkbox "หยิบข้อจากคลังข้อสอบก่อน (ตรงชั้น วิชา ตัวชี้วัด และระดับ) แล้วให้ AI สร้างเฉพาะข้อที่ขาด" [checked] [ref=f3e151]
+      - text: หยิบข้อจากคลังข้อสอบก่อน (ตรงชั้น วิชา ตัวชี้วัด และระดับ) แล้วให้ AI สร้างเฉพาะข้อที่ขาด
+    - generic [ref=f3e152]:
+      - checkbox "🖼️ สร้างรูปภาพและแผนภาพประกอบโจทย์ในแต่ละข้อ (เรขาคณิต เศษส่วน วงจรไฟฟ้า การทดลอง ฯลฯ)" [checked] [ref=f3e153]
+      - text: 🖼️ สร้างรูปภาพและแผนภาพประกอบโจทย์ในแต่ละข้อ (เรขาคณิต เศษส่วน วงจรไฟฟ้า การทดลอง ฯลฯ)
+    - generic [ref=f3e154]:
+      - button "ดูตารางวิเคราะห์ / ข้อที่มีในคลัง" [ref=f3e155] [cursor=pointer]
+      - button "สร้างข้อสอบ" [ref=f3e156] [cursor=pointer]
+  - generic [ref=f3e160]:
+    - generic [ref=f3e161]:
+      - generic [ref=f3e162]:
+        - generic [ref=f3e163]:
+          - button "ตารางวิเคราะห์" [ref=f3e164] [cursor=pointer]
+          - button "แก้ไขข้อสอบ" [ref=f3e165] [cursor=pointer]
+          - button "ข้อสอบ" [active] [ref=f3e166] [cursor=pointer]
+          - button "กระดาษคำตอบ" [ref=f3e167] [cursor=pointer]
+          - button "เฉลย" [ref=f3e168] [cursor=pointer]
+        - generic [ref=f3e169]:
+          - button "บันทึก" [ref=f3e170] [cursor=pointer]
+          - button "พิมพ์ / PDF แท็บนี้" [ref=f3e171] [cursor=pointer]
+      - generic [ref=f3e172]:
+        - checkbox "ตอนบันทึก เก็บข้อที่ AI สร้าง/ครูแก้ไขเข้าคลังข้อสอบด้วย" [checked] [ref=f3e173]
+        - text: ตอนบันทึก เก็บข้อที่ AI สร้าง/ครูแก้ไขเข้าคลังข้อสอบด้วย
+      - generic [ref=f3e174]: "ได้ข้อสอบ 20 ข้อ: จากคลัง 0 · AI สร้าง 20 · คะแนนเต็ม 20"
+    - generic [ref=f3e269]:
+      - heading [level=2]
+      - generic [ref=f3e270]: ข้อสอบปลายภาค ภาษาไทย ป.4
+      - generic [ref=f3e271]: วิชาภาษาไทย ชั้นป.4 ปีการศึกษา 2569
+      - generic [ref=f3e272]: เวลา 60 นาที · คะแนนเต็ม 20 คะแนน · ทั้งหมด 20 ข้อ
+      - generic [ref=f3e273]:
+        - generic [ref=f3e274]: ชื่อ-สกุล
+        - generic [ref=f3e276]: ชั้น
+        - generic [ref=f3e278]: เลขที่
+      - generic [ref=f3e280]: ตอนที่ 1 ปรนัย 4 ตัวเลือก (20 ข้อ ข้อละ 1 คะแนน รวม 20 คะแนน)
+      - generic [ref=f3e281]: "คำชี้แจง: เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว แล้วฝนวงกลมในกระดาษคำตอบ"
+      - generic [ref=f3e282]:
+        - generic [ref=f3e283]: "1."
+        - text: จากหลักไตรยางศ์ (อักษร 3 หมู่) พยัญชนะในข้อใดจัดอยู่ในกลุ่ม "อักษรสูง" ทั้งหมด?
+        - img [ref=f3e285]:
+          - generic [ref=f3e286]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e288]: อักษรสูง (11)
+          - generic [ref=f3e289]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e290]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e291]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e293]: อักษรกลาง (9)
+          - generic [ref=f3e294]: ก จ ด ต บ ป
+          - generic [ref=f3e295]: อ ฎ ฏ
+          - generic [ref=f3e296]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e298]: อักษรต่ำ (24)
+          - generic [ref=f3e299]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e300]: ต่ำคู่ (14)
+          - generic [ref=f3e301]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e302]:
+          - generic [ref=f3e303]: ก. ข, ฉ, ถ, ส, ห
+          - generic [ref=f3e304]: ข. ก, จ, ด, ต, บ
+          - generic [ref=f3e305]: ค. ค, ง, ช, ซ, ท
+          - generic [ref=f3e306]: ง. ป, อ, ฎ, ฏ, ผ
+      - generic [ref=f3e307]:
+        - generic [ref=f3e308]: "2."
+        - text: ข้อใดเป็น "ประโยคความเดียว" ที่มีใจความสมบูรณ์เพียงใจความเดียว?
+        - img [ref=f3e310]:
+          - generic [ref=f3e311]: โครงสร้างประโยคในภาษาไทย
+          - generic [ref=f3e313]: ภาคประธาน
+          - generic [ref=f3e315]: ประธาน
+          - generic [ref=f3e316]: (คำนาม/สรรพนาม)
+          - generic [ref=f3e318]: ขยายประธาน
+          - generic [ref=f3e319]: (คำวิเศษณ์)
+          - generic [ref=f3e321]: ภาคแสดง
+          - generic [ref=f3e323]: กริยา
+          - generic [ref=f3e324]: (อกรรม/สกรรม)
+          - generic [ref=f3e326]: กรรม/ขยาย
+          - generic [ref=f3e327]: (ส่วนเติมเต็ม)
+        - generic [ref=f3e328]:
+          - generic [ref=f3e329]: ก. คุณพ่อรดน้ำต้นไม้ในสวนหน้าบ้านทุกเช้า
+          - generic [ref=f3e330]: ข. ฉันชอบอ่านหนังสือแต่น้องชอบดูโทรทัศน์
+          - generic [ref=f3e331]: ค. คุณครูชมเชยนักเรียนที่ตั้งใจทำเวรทำความสะอาด
+          - generic [ref=f3e332]: ง. ฝนตกหนักมากจึงทำให้เกิดน้ำท่วมขัง
+      - generic [ref=f3e333]:
+        - generic [ref=f3e334]: "3."
+        - text: คำว่า "ทูลเกล้าฯ ถวาย" ใช้กับการถวายสิ่งของลักษณะใดในราชาศัพท์?
+        - img [ref=f3e336]:
+          - generic [ref=f3e337]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e339]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e340]: • แม่กง (ง)
+          - generic [ref=f3e341]: • แม่กม (ม)
+          - generic [ref=f3e342]: • แม่เกย (ย)
+          - generic [ref=f3e343]: • แม่เกอว (ว)
+          - generic [ref=f3e344]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e346]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e347]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e348]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e349]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e350]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e351]:
+          - generic [ref=f3e352]: ก. ของที่มีน้ำหนักเบาและยกประคองด้วยมือได้
+          - generic [ref=f3e353]: ข. ของที่มีน้ำหนักมากหรือขนาดใหญ่ เช่น รถยนต์ หรือที่ดิน
+          - generic [ref=f3e354]: ค. อาหารและเครื่องดื่มทุกประเภท
+          - generic [ref=f3e355]: ง. เงินสดและตั๋วสัญญาใช้เงินเท่านั้น
+      - generic [ref=f3e356]:
+        - generic [ref=f3e357]: "4."
+        - text: สำนวนไทยข้อใดมีความหมายตรงกับ "การลงมือทำงานที่ยากลำบากเกินกว่ากำลังความสามารถของตนเอง"?
+        - img [ref=f3e359]:
+          - generic [ref=f3e360]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e362]: อักษรสูง (11)
+          - generic [ref=f3e363]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e364]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e365]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e367]: อักษรกลาง (9)
+          - generic [ref=f3e368]: ก จ ด ต บ ป
+          - generic [ref=f3e369]: อ ฎ ฏ
+          - generic [ref=f3e370]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e372]: อักษรต่ำ (24)
+          - generic [ref=f3e373]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e374]: ต่ำคู่ (14)
+          - generic [ref=f3e375]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e376]:
+          - generic [ref=f3e377]: ก. เข็นครกขึ้นภูเขา
+          - generic [ref=f3e378]: ข. น้ำขึ้นให้รีบตัก
+          - generic [ref=f3e379]: ค. ขี่ช้างจับตั๊กแตน
+          - generic [ref=f3e380]: ง. จับปลาสองมือ
+      - generic [ref=f3e381]:
+        - generic [ref=f3e382]: "5."
+        - text: คำในข้อใดเป็น "คำสมาส" ตามหลักภาษาบาลี-สันสกฤต?
+        - img [ref=f3e384]:
+          - generic [ref=f3e385]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e387]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e388]: • แม่กง (ง)
+          - generic [ref=f3e389]: • แม่กม (ม)
+          - generic [ref=f3e390]: • แม่เกย (ย)
+          - generic [ref=f3e391]: • แม่เกอว (ว)
+          - generic [ref=f3e392]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e394]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e395]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e396]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e397]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e398]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e399]:
+          - generic [ref=f3e400]: ก. ภูมิศาสตร์
+          - generic [ref=f3e401]: ข. ตาหวาน
+          - generic [ref=f3e402]: ค. ไม้กวาด
+          - generic [ref=f3e403]: ง. ลูกน้ำ
+      - generic [ref=f3e404]:
+        - generic [ref=f3e405]: "6."
+        - text: ชาวสวนเก็บมะม่วงได้ 15 ลัง แต่ละลังมีมะม่วง 10 ผล รวมเก็บมะม่วงได้ทั้งหมดกี่ผล?
+        - img [ref=f3e407]:
+          - generic [ref=f3e408]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e410]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e411]: • แม่กง (ง)
+          - generic [ref=f3e412]: • แม่กม (ม)
+          - generic [ref=f3e413]: • แม่เกย (ย)
+          - generic [ref=f3e414]: • แม่เกอว (ว)
+          - generic [ref=f3e415]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e417]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e418]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e419]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e420]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e421]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e422]:
+          - generic [ref=f3e423]: ก. 150 ผล
+          - generic [ref=f3e424]: ข. 140 ผล
+          - generic [ref=f3e425]: ค. 160 ผล
+          - generic [ref=f3e426]: ง. 170 ผล
+      - generic [ref=f3e427]:
+        - generic [ref=f3e428]: "7."
+        - text: สี่เหลี่ยมจัตุรัสรูปหนึ่งมีความยาวรอบรูป 72 เซนติเมตร จะมีพื้นที่กี่ตารางเซนติเมตร?
+        - img [ref=f3e430]:
+          - generic [ref=f3e431]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e433]: อักษรสูง (11)
+          - generic [ref=f3e434]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e435]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e436]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e438]: อักษรกลาง (9)
+          - generic [ref=f3e439]: ก จ ด ต บ ป
+          - generic [ref=f3e440]: อ ฎ ฏ
+          - generic [ref=f3e441]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e443]: อักษรต่ำ (24)
+          - generic [ref=f3e444]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e445]: ต่ำคู่ (14)
+          - generic [ref=f3e446]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e447]:
+          - generic [ref=f3e448]: ก. 324 ตร.ซม.
+          - generic [ref=f3e449]: ข. 72 ตร.ซม.
+          - generic [ref=f3e450]: ค. 400 ตร.ซม.
+          - generic [ref=f3e451]: ง. 36 ตร.ซม.
+      - generic [ref=f3e452]:
+        - generic [ref=f3e453]: "8."
+        - text: ผลบวกของ 1/5 + 1/6 มีค่าเท่ากับข้อใด?
+        - img [ref=f3e455]:
+          - generic [ref=f3e456]: โครงสร้างประโยคในภาษาไทย
+          - generic [ref=f3e458]: ภาคประธาน
+          - generic [ref=f3e460]: ประธาน
+          - generic [ref=f3e461]: (คำนาม/สรรพนาม)
+          - generic [ref=f3e463]: ขยายประธาน
+          - generic [ref=f3e464]: (คำวิเศษณ์)
+          - generic [ref=f3e466]: ภาคแสดง
+          - generic [ref=f3e468]: กริยา
+          - generic [ref=f3e469]: (อกรรม/สกรรม)
+          - generic [ref=f3e471]: กรรม/ขยาย
+          - generic [ref=f3e472]: (ส่วนเติมเต็ม)
+        - generic [ref=f3e473]:
+          - generic [ref=f3e474]: ก. 11/30
+          - generic [ref=f3e475]: ข. 2/11
+          - generic [ref=f3e476]: ค. 1/30
+          - generic [ref=f3e477]: ง. 4/7
+      - generic [ref=f3e478]:
+        - generic [ref=f3e479]: "9."
+        - text: ชาวสวนเก็บมะม่วงได้ 24 ลัง แต่ละลังมีมะม่วง 16 ผล รวมเก็บมะม่วงได้ทั้งหมดกี่ผล?
+        - img [ref=f3e481]:
+          - generic [ref=f3e482]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e484]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e485]: • แม่กง (ง)
+          - generic [ref=f3e486]: • แม่กม (ม)
+          - generic [ref=f3e487]: • แม่เกย (ย)
+          - generic [ref=f3e488]: • แม่เกอว (ว)
+          - generic [ref=f3e489]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e491]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e492]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e493]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e494]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e495]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e496]:
+          - generic [ref=f3e497]: ก. 384 ผล
+          - generic [ref=f3e498]: ข. 374 ผล
+          - generic [ref=f3e499]: ค. 394 ผล
+          - generic [ref=f3e500]: ง. 404 ผล
+      - generic [ref=f3e501]:
+        - generic [ref=f3e502]: "10."
+        - text: สี่เหลี่ยมจัตุรัสรูปหนึ่งมีความยาวรอบรูป 108 เซนติเมตร จะมีพื้นที่กี่ตารางเซนติเมตร?
+        - img [ref=f3e504]:
+          - generic [ref=f3e505]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e507]: อักษรสูง (11)
+          - generic [ref=f3e508]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e509]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e510]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e512]: อักษรกลาง (9)
+          - generic [ref=f3e513]: ก จ ด ต บ ป
+          - generic [ref=f3e514]: อ ฎ ฏ
+          - generic [ref=f3e515]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e517]: อักษรต่ำ (24)
+          - generic [ref=f3e518]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e519]: ต่ำคู่ (14)
+          - generic [ref=f3e520]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e521]:
+          - generic [ref=f3e522]: ก. 729 ตร.ซม.
+          - generic [ref=f3e523]: ข. 108 ตร.ซม.
+          - generic [ref=f3e524]: ค. 841 ตร.ซม.
+          - generic [ref=f3e525]: ง. 54 ตร.ซม.
+      - generic [ref=f3e526]:
+        - generic [ref=f3e527]: "11."
+        - text: ผลบวกของ 1/8 + 1/9 มีค่าเท่ากับข้อใด?
+        - img [ref=f3e529]:
+          - generic [ref=f3e530]: โครงสร้างประโยคในภาษาไทย
+          - generic [ref=f3e532]: ภาคประธาน
+          - generic [ref=f3e534]: ประธาน
+          - generic [ref=f3e535]: (คำนาม/สรรพนาม)
+          - generic [ref=f3e537]: ขยายประธาน
+          - generic [ref=f3e538]: (คำวิเศษณ์)
+          - generic [ref=f3e540]: ภาคแสดง
+          - generic [ref=f3e542]: กริยา
+          - generic [ref=f3e543]: (อกรรม/สกรรม)
+          - generic [ref=f3e545]: กรรม/ขยาย
+          - generic [ref=f3e546]: (ส่วนเติมเต็ม)
+        - generic [ref=f3e547]:
+          - generic [ref=f3e548]: ก. 17/72
+          - generic [ref=f3e549]: ข. 2/17
+          - generic [ref=f3e550]: ค. 1/72
+          - generic [ref=f3e551]: ง. 7/10
+      - generic [ref=f3e552]:
+        - generic [ref=f3e553]: "12."
+        - text: ชาวสวนเก็บมะม่วงได้ 33 ลัง แต่ละลังมีมะม่วง 22 ผล รวมเก็บมะม่วงได้ทั้งหมดกี่ผล?
+        - img [ref=f3e555]:
+          - generic [ref=f3e556]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e558]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e559]: • แม่กง (ง)
+          - generic [ref=f3e560]: • แม่กม (ม)
+          - generic [ref=f3e561]: • แม่เกย (ย)
+          - generic [ref=f3e562]: • แม่เกอว (ว)
+          - generic [ref=f3e563]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e565]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e566]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e567]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e568]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e569]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e570]:
+          - generic [ref=f3e571]: ก. 726 ผล
+          - generic [ref=f3e572]: ข. 716 ผล
+          - generic [ref=f3e573]: ค. 736 ผล
+          - generic [ref=f3e574]: ง. 746 ผล
+      - generic [ref=f3e575]:
+        - generic [ref=f3e576]: "13."
+        - text: สี่เหลี่ยมจัตุรัสรูปหนึ่งมีความยาวรอบรูป 144 เซนติเมตร จะมีพื้นที่กี่ตารางเซนติเมตร?
+        - img [ref=f3e578]:
+          - generic [ref=f3e579]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e581]: อักษรสูง (11)
+          - generic [ref=f3e582]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e583]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e584]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e586]: อักษรกลาง (9)
+          - generic [ref=f3e587]: ก จ ด ต บ ป
+          - generic [ref=f3e588]: อ ฎ ฏ
+          - generic [ref=f3e589]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e591]: อักษรต่ำ (24)
+          - generic [ref=f3e592]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e593]: ต่ำคู่ (14)
+          - generic [ref=f3e594]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e595]:
+          - generic [ref=f3e596]: ก. 1296 ตร.ซม.
+          - generic [ref=f3e597]: ข. 144 ตร.ซม.
+          - generic [ref=f3e598]: ค. 1444 ตร.ซม.
+          - generic [ref=f3e599]: ง. 72 ตร.ซม.
+      - generic [ref=f3e600]:
+        - generic [ref=f3e601]: "14."
+        - text: ผลบวกของ 1/11 + 1/12 มีค่าเท่ากับข้อใด?
+        - img [ref=f3e603]:
+          - generic [ref=f3e604]: โครงสร้างประโยคในภาษาไทย
+          - generic [ref=f3e606]: ภาคประธาน
+          - generic [ref=f3e608]: ประธาน
+          - generic [ref=f3e609]: (คำนาม/สรรพนาม)
+          - generic [ref=f3e611]: ขยายประธาน
+          - generic [ref=f3e612]: (คำวิเศษณ์)
+          - generic [ref=f3e614]: ภาคแสดง
+          - generic [ref=f3e616]: กริยา
+          - generic [ref=f3e617]: (อกรรม/สกรรม)
+          - generic [ref=f3e619]: กรรม/ขยาย
+          - generic [ref=f3e620]: (ส่วนเติมเต็ม)
+        - generic [ref=f3e621]:
+          - generic [ref=f3e622]: ก. 23/132
+          - generic [ref=f3e623]: ข. 2/23
+          - generic [ref=f3e624]: ค. 1/132
+          - generic [ref=f3e625]: ง. 10/13
+      - generic [ref=f3e626]:
+        - generic [ref=f3e627]: "15."
+        - text: ชาวสวนเก็บมะม่วงได้ 42 ลัง แต่ละลังมีมะม่วง 28 ผล รวมเก็บมะม่วงได้ทั้งหมดกี่ผล?
+        - img [ref=f3e629]:
+          - generic [ref=f3e630]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e632]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e633]: • แม่กง (ง)
+          - generic [ref=f3e634]: • แม่กม (ม)
+          - generic [ref=f3e635]: • แม่เกย (ย)
+          - generic [ref=f3e636]: • แม่เกอว (ว)
+          - generic [ref=f3e637]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e639]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e640]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e641]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e642]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e643]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e644]:
+          - generic [ref=f3e645]: ก. 1176 ผล
+          - generic [ref=f3e646]: ข. 1166 ผล
+          - generic [ref=f3e647]: ค. 1186 ผล
+          - generic [ref=f3e648]: ง. 1196 ผล
+      - generic [ref=f3e649]:
+        - generic [ref=f3e650]: "16."
+        - text: สี่เหลี่ยมจัตุรัสรูปหนึ่งมีความยาวรอบรูป 180 เซนติเมตร จะมีพื้นที่กี่ตารางเซนติเมตร?
+        - img [ref=f3e652]:
+          - generic [ref=f3e653]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e655]: อักษรสูง (11)
+          - generic [ref=f3e656]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e657]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e658]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e660]: อักษรกลาง (9)
+          - generic [ref=f3e661]: ก จ ด ต บ ป
+          - generic [ref=f3e662]: อ ฎ ฏ
+          - generic [ref=f3e663]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e665]: อักษรต่ำ (24)
+          - generic [ref=f3e666]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e667]: ต่ำคู่ (14)
+          - generic [ref=f3e668]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e669]:
+          - generic [ref=f3e670]: ก. 2025 ตร.ซม.
+          - generic [ref=f3e671]: ข. 180 ตร.ซม.
+          - generic [ref=f3e672]: ค. 2209 ตร.ซม.
+          - generic [ref=f3e673]: ง. 90 ตร.ซม.
+      - generic [ref=f3e674]:
+        - generic [ref=f3e675]: "17."
+        - text: ผลบวกของ 1/14 + 1/15 มีค่าเท่ากับข้อใด?
+        - img [ref=f3e677]:
+          - generic [ref=f3e678]: โครงสร้างประโยคในภาษาไทย
+          - generic [ref=f3e680]: ภาคประธาน
+          - generic [ref=f3e682]: ประธาน
+          - generic [ref=f3e683]: (คำนาม/สรรพนาม)
+          - generic [ref=f3e685]: ขยายประธาน
+          - generic [ref=f3e686]: (คำวิเศษณ์)
+          - generic [ref=f3e688]: ภาคแสดง
+          - generic [ref=f3e690]: กริยา
+          - generic [ref=f3e691]: (อกรรม/สกรรม)
+          - generic [ref=f3e693]: กรรม/ขยาย
+          - generic [ref=f3e694]: (ส่วนเติมเต็ม)
+        - generic [ref=f3e695]:
+          - generic [ref=f3e696]: ก. 29/210
+          - generic [ref=f3e697]: ข. 2/29
+          - generic [ref=f3e698]: ค. 1/210
+          - generic [ref=f3e699]: ง. 13/16
+      - generic [ref=f3e700]:
+        - generic [ref=f3e701]: "18."
+        - text: ชาวสวนเก็บมะม่วงได้ 51 ลัง แต่ละลังมีมะม่วง 34 ผล รวมเก็บมะม่วงได้ทั้งหมดกี่ผล?
+        - img [ref=f3e703]:
+          - generic [ref=f3e704]: มาตราตัวสะกดในภาษาไทย (๘ มาตรา + แม่ ก กา)
+          - generic [ref=f3e706]: สะกดตรงมาตรา (ตัวเดียว)
+          - generic [ref=f3e707]: • แม่กง (ง)
+          - generic [ref=f3e708]: • แม่กม (ม)
+          - generic [ref=f3e709]: • แม่เกย (ย)
+          - generic [ref=f3e710]: • แม่เกอว (ว)
+          - generic [ref=f3e711]: • ก กา (ไม่มีตัวสะกด)
+          - generic [ref=f3e713]: ไม่ตรงตามมาตรา (หลายตัว)
+          - generic [ref=f3e714]: • แม่กน (น, ณ, ญ, ร, ล, ฬ)
+          - generic [ref=f3e715]: • แม่กก (ก, ข, ค, ฆ)
+          - generic [ref=f3e716]: • แม่กด (ด, จ, ช, ซ, ฎ, ฏ, ฐ, ฑ, ฒ, ต, ถ, ท, ธ, ศ, ษ, ส)
+          - generic [ref=f3e717]: • แม่กบ (บ, ป, พ, ฟ, ภ)
+        - generic [ref=f3e718]:
+          - generic [ref=f3e719]: ก. 1734 ผล
+          - generic [ref=f3e720]: ข. 1724 ผล
+          - generic [ref=f3e721]: ค. 1744 ผล
+          - generic [ref=f3e722]: ง. 1754 ผล
+      - generic [ref=f3e723]:
+        - generic [ref=f3e724]: "19."
+        - text: สี่เหลี่ยมจัตุรัสรูปหนึ่งมีความยาวรอบรูป 216 เซนติเมตร จะมีพื้นที่กี่ตารางเซนติเมตร?
+        - img [ref=f3e726]:
+          - generic [ref=f3e727]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f3e729]: อักษรสูง (11)
+          - generic [ref=f3e730]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f3e731]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f3e732]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f3e734]: อักษรกลาง (9)
+          - generic [ref=f3e735]: ก จ ด ต บ ป
+          - generic [ref=f3e736]: อ ฎ ฏ
+          - generic [ref=f3e737]: ไก่จิกเด็กตายฯ
+          - generic [ref=f3e739]: อักษรต่ำ (24)
+          - generic [ref=f3e740]: ต่ำเดี่ยว (10)
+          - generic [ref=f3e741]: ต่ำคู่ (14)
+          - generic [ref=f3e742]: ค ง ช ซ ท น พ...
+        - generic [ref=f3e743]:
+          - generic [ref=f3e744]: ก. 2916 ตร.ซม.
+          - generic [ref=f3e745]: ข. 216 ตร.ซม.
+          - generic [ref=f3e746]: ค. 3136 ตร.ซม.
+          - generic [ref=f3e747]: ง. 108 ตร.ซม.
+      - generic [ref=f3e748]:
+        - generic [ref=f3e749]: "20."
+        - text: ผลบวกของ 1/17 + 1/18 มีค่าเท่ากับข้อใด?
+        - img [ref=f3e751]:
+          - generic [ref=f3e752]: โครงสร้างประโยคในภาษาไทย
+          - generic [ref=f3e754]: ภาคประธาน
+          - generic [ref=f3e756]: ประธาน
+          - generic [ref=f3e757]: (คำนาม/สรรพนาม)
+          - generic [ref=f3e759]: ขยายประธาน
+          - generic [ref=f3e760]: (คำวิเศษณ์)
+          - generic [ref=f3e762]: ภาคแสดง
+          - generic [ref=f3e764]: กริยา
+          - generic [ref=f3e765]: (อกรรม/สกรรม)
+          - generic [ref=f3e767]: กรรม/ขยาย
+          - generic [ref=f3e768]: (ส่วนเติมเต็ม)
+        - generic [ref=f3e769]:
+          - generic [ref=f3e770]: ก. 35/306
+          - generic [ref=f3e771]: ข. 2/35
+          - generic [ref=f3e772]: ค. 1/306
+          - generic [ref=f3e773]: ง. 16/19
+  - generic [ref=f3e157]:
+    - strong [ref=f3e158]: ข้อสอบที่บันทึกไว้
+    - generic [ref=f3e159]: ยังไม่มีข้อสอบที่บันทึก

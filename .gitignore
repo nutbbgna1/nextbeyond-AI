@@ -1,0 +1,29 @@
+.DS_Store
+
+# Secrets and machine-specific configuration
+config.php
+.env
+.env.*
+!.env.example
+
+# Runtime/user data (keep only the protected directory skeleton)
+data/*
+!data/.htaccess
+!data/index.php
+!data/images/
+data/images/*
+!data/images/.gitkeep
+!data/library_files/
+data/library_files/*
+!data/library_files/.htaccess
+
+# React build artifacts
+node_modules/
+react-app/node_modules/
+react-app/dist/
+react-app/*.tsbuildinfo
+
+# Backups and temporary files
+*.bak-*
+*.log
+.cache/

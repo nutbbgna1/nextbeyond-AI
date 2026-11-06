@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>แผนทั้งภาคเรียน · ผู้ช่วยครู AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>#tbl td,#tbl th{padding:4px 5px}#tbl input[type=text],#tbl select{width:100%;min-width:0;padding:6px 7px;font-size:13px}#tbl select{max-width:130px}#tbl th:nth-child(1){width:64px}#tbl th:nth-child(6){width:140px}#tbl th:nth-child(7){width:110px}@media print{.topnav,.no-print{display:none!important}.panel{box-shadow:none;border:0}select,input{border:0!important;background:none!important;appearance:none}}</style>
+<style>
+    .sites-preview-banner{position:sticky;top:0;z-index:9999;display:flex;justify-content:center;gap:10px;align-items:center;padding:8px 16px;background:#211747;color:#fff;font:14px/1.4 Sarabun,sans-serif;box-shadow:0 2px 12px #21174733}
+    .sites-preview-banner b{color:#ffd76a}.sites-preview-banner span{opacity:.9}
+    @media(max-width:640px){.sites-preview-banner{align-items:flex-start;flex-direction:column;gap:0}}
+  </style></head>
+<body class="sites-preview"><div class="sites-preview-banner" role="status">
+    <b>โหมดเว็บทดสอบ</b><span>ดูหน้าจอและทดลองกรอกข้อมูลได้ โดยยังไม่เชื่อม AI หรือฐานข้อมูลจริง</span>
+  </div>
+<div class="app">
+  <div id="jserr" class="error hidden"></div>
+  <nav class="topnav no-print" id="topnav" aria-label="เมนูหลัก"><div class="navbar"><button type="button" class="burger" id="burger" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navmenu"><span></span><span></span><span></span></button><span class="navtitle">แผนภาคเรียน</span></div><div class="navscrim" id="navscrim"></div><div class="navmenu" id="navmenu"><a class="brand" href="home.html"><b>ผู้ช่วยครู AI</b><span>แผนการสอน ใบงาน และข้อสอบ</span></a><div class="navrow"><div class="navlabel">ขั้นตอนการทำงาน</div><a class="nl" href="home.html" title="ภาพรวม ขั้นตอนการใช้งาน และเช็กความพร้อมของระบบ"><span class="ic" aria-hidden="true">⌂</span><span>หน้าเริ่มต้น</span></a><a class="nl on" href="term.html" title="วางหัวข้อรายสัปดาห์ทั้งภาคเรียน" aria-current="page"><span class="ic" aria-hidden="true">1</span><span>แผนภาคเรียน</span></a><a class="nl" href="lplan.html" title="ให้ AI ร่างแผนการจัดการเรียนรู้ของแต่ละเรื่อง (แกนหลักของบทเรียน)"><span class="ic" aria-hidden="true">2</span><span>แผนการสอน</span></a><a class="nl" href="worksheet.html" title="สร้างใบงาน เฉลย ใบความรู้ ตามแผนการสอน แล้วพิมพ์เป็น PDF"><span class="ic" aria-hidden="true">3</span><span>สร้างใบงาน</span></a><a class="nl" href="book.html" title="รวมใบงานหลายชุดเป็นเล่ม มีปก สารบัญ และเฉลย"><span class="ic" aria-hidden="true">4</span><span>รวมเล่ม</span></a><a class="nl" href="exam.html" title="สร้างข้อสอบกลางภาค/ปลายภาค พร้อมตารางวิเคราะห์ กระดาษคำตอบ และเฉลย"><span class="ic" aria-hidden="true">5</span><span>ข้อสอบ</span></a></div><div class="navrow"><div class="navlabel">คลังและเครื่องมือ</div><a class="nl" href="diagrams.html" title="คลังและเครื่องมือสร้างแผนภาพสื่อการสอน โหมดข้อสอบ/เฉลย และ AI"><span class="ic" aria-hidden="true">🎨</span><span>สตูดิโอแผนภาพ</span></a><a class="nl" href="saved.html" title="ชุดใบงานที่สร้างไว้ จัดหมวด ค้นหา ส่งออก"><span class="ic" aria-hidden="true">🗂</span><span>คลังใบงาน</span></a><a class="nl" href="bank.html" title="โจทย์รายข้อ เลือกมาประกอบเป็นชุดใหม่"><span class="ic" aria-hidden="true">🧩</span><span>คลังข้อสอบ</span></a><a class="nl" href="library.html" title="อัปโหลดหนังสือเรียน/บทอ่านให้ AI ใช้อ้างอิง"><span class="ic" aria-hidden="true">📚</span><span>คลังเอกสาร</span></a><a class="nl" href="curriculum.html" title="นำเข้าและจัดการตัวชี้วัดของหลักสูตร"><span class="ic" aria-hidden="true">🎯</span><span>ตัวชี้วัด</span></a><a class="nl" href="settings.html" title="ใส่คีย์ และเลือกผู้ให้บริการ/โมเดลของแต่ละเมนู"><span class="ic" aria-hidden="true">⚙️</span><span>ตั้งค่า AI</span></a><a class="nl" href="check-setup.html" title="ตรวจว่าไฟล์ครบ เขียนข้อมูลได้ และตั้งค่า AI แล้ว"><span class="ic" aria-hidden="true">🩺</span><span>ตรวจระบบ</span></a></div><div class="navfoot">ผลงานจาก AI ครูควรตรวจทานก่อนใช้ทุกครั้ง</div></div></nav><script>(function(){var n=document.getElementById("topnav"),b=document.getElementById("burger");if(!n||!b)return;function set(o){n.classList.toggle("open",o);b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"ปิดเมนู":"เปิดเมนู");document.documentElement.classList.toggle("nav-lock",o);}b.addEventListener("click",function(){set(!n.classList.contains("open"));});document.getElementById("navscrim").addEventListener("click",function(){set(false);});n.addEventListener("click",function(e){if(e.target.closest("a.nl"))set(false);});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){set(false);b.focus();}});window.addEventListener("resize",function(){if(innerWidth>960)set(false);});})();</script>
+  <h1>แผนทั้งภาคเรียน</h1>
+  <p class="sub">ให้ AI ช่วยร่างแผนรายสัปดาห์จากหน่วยการเรียนรู้และตัวชี้วัดของชั้น/วิชานั้น (ครูแก้ไขได้ทุกช่อง) แล้วกด “สร้างใบงาน” ของแต่ละสัปดาห์ ระบบจะเปิดหน้าสร้างใบงานพร้อมหัวข้อ รูปแบบ และตัวชี้วัดที่เลือกให้</p>
+
+  <div class="panel no-print">
+    <div class="grid">
+      <label class="f">ชั้น<select id="grade"></select></label>
+      <label class="f">วิชา<select id="subject"></select></label>
+      <label class="f">ภาคเรียน<select id="term"><option value="">ทุกหน่วย</option><option value="1">ภาคเรียนที่ 1</option><option value="2">ภาคเรียนที่ 2</option></select></label>
+      <label class="f">จำนวนสัปดาห์ (1-24)<input type="number" id="weeks" min="1" max="24" value="18"></label>
+      <label class="f">สัปดาห์ทบทวน<input type="number" id="review" min="0" max="4" value="1"></label>
+      <label class="f">สัปดาห์สอบ<input type="number" id="exam" min="0" max="4" value="2"></label>
+      <label class="f" style="grid-column:span 3">ข้อเสนอแนะเพิ่มเติม (ไม่บังคับ)<input type="text" id="hint" maxlength="300" placeholder="เช่น เน้นกิจกรรมปฏิบัติ / ช่วงสัปดาห์ที่ 5 มีวันหยุดยาว"></label>
+    </div>
+    <div id="unitNote" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
+    <div class="row" style="margin-top:12px"><button id="gen">ให้ AI ร่างแผน</button><button type="button" class="ghost hidden" id="stopGen">⏹ หยุด</button><span id="genNote" class="sub" style="margin:0"></span></div>
+  </div>
+
+  <div class="panel hidden" id="planBox">
+    <div class="row" style="justify-content:space-between">
+      <label class="f" style="flex:1;min-width:220px">ชื่อแผน<input type="text" id="title" maxlength="120"></label>
+      <span class="row no-print"><button id="save">บันทึกแผน</button><button class="ghost" id="print">พิมพ์</button><span id="saveNote" class="sub" style="margin:0"></span></span>
+    </div>
+    <div id="cov" style="font-size:13px;margin:8px 0"></div>
+    <div style="overflow-x:auto"><table class="tbl" id="tbl"><thead><tr><th>สัปดาห์</th><th>หน่วย</th><th>หัวข้อ</th><th>ประเภท</th><th>ชนิดใบงาน</th><th>ตัวชี้วัด</th><th>หมายเหตุ</th><th class="no-print"></th></tr></thead><tbody></tbody></table></div>
+    <div class="row no-print" style="margin-top:8px"><button class="ghost small" id="addRow">＋ เพิ่มแถว</button></div>
+  </div>
+
+  <div class="panel no-print"><strong>แผนที่บันทึกไว้</strong><div id="saved" style="margin-top:8px;font-size:14px">กำลังโหลด…</div></div>
+</div>
+<script src="assets/js/data/curriculum.js"></script>
+<script src="assets/js/shared/common.js"></script>
+<script>window.SHEET_TYPE_LABELS = {"multiple_choice":"ปรนัย 4 ตัวเลือก","fill_blank":"เติมคำในช่องว่าง","matching":"จับคู่","true_false":"ถูก / ผิด","ordering":"เรียงลำดับ","short_answer":"ตอบสั้น","calculation":"คำนวณแสดงวิธีทำ","multi_statement":"ปรนัยเลือกข้อความถูก (1, 2, 3)","data_set":"ชุดคำถามจากข้อมูล/กราฟ","exam":"แบบทดสอบ 2 ตอน (ปรนัย+อัตนัย)"};</script>
+<script src="assets/js/pages/term.js"></script>
+</body>
+</html>

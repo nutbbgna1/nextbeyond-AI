@@ -1,0 +1,319 @@
+- generic [ref=f2e2]:
+  - navigation "เมนูหลัก" [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - link "ผู้ช่วยครู AI แผนการสอน ใบงาน และข้อสอบ" [ref=f2e5] [cursor=pointer]:
+        - /url: home.php
+        - generic [ref=f2e6]: ผู้ช่วยครู AI
+        - generic [ref=f2e7]: แผนการสอน ใบงาน และข้อสอบ
+      - generic [ref=f2e8]:
+        - generic [ref=f2e9]: ขั้นตอนการทำงาน
+        - link "หน้าเริ่มต้น" [ref=f2e10] [cursor=pointer]:
+          - /url: home.php
+          - generic [aria-hidden] [ref=f2e11]: ⌂
+        - link "แผนภาคเรียน" [ref=f2e13] [cursor=pointer]:
+          - /url: term.php
+          - generic [aria-hidden] [ref=f2e14]: "1"
+        - link "แผนการสอน" [ref=f2e16] [cursor=pointer]:
+          - /url: lplan.php
+          - generic [aria-hidden] [ref=f2e17]: "2"
+        - link "สร้างใบงาน" [ref=f2e19] [cursor=pointer]:
+          - /url: index.php
+          - generic [aria-hidden] [ref=f2e20]: "3"
+        - link "รวมเล่ม" [ref=f2e22] [cursor=pointer]:
+          - /url: book.php
+          - generic [aria-hidden] [ref=f2e23]: "4"
+        - link "ข้อสอบ" [ref=f2e25] [cursor=pointer]:
+          - /url: exam.php
+          - generic [aria-hidden] [ref=f2e26]: "5"
+      - generic [ref=f2e28]:
+        - generic [ref=f2e29]: คลังและเครื่องมือ
+        - link "คลังใบงาน" [ref=f2e30] [cursor=pointer]:
+          - /url: saved.php
+          - generic [aria-hidden] [ref=f2e31]: 🗂
+        - link "คลังข้อสอบ" [ref=f2e33] [cursor=pointer]:
+          - /url: bank.php
+          - generic [aria-hidden] [ref=f2e34]: 🧩
+        - link "คลังเอกสาร" [ref=f2e36] [cursor=pointer]:
+          - /url: library.php
+          - generic [aria-hidden] [ref=f2e37]: 📚
+        - link "ตัวชี้วัด" [ref=f2e39] [cursor=pointer]:
+          - /url: curriculum.php
+          - generic [aria-hidden] [ref=f2e40]: 🎯
+        - link "ตั้งค่า AI" [ref=f2e42] [cursor=pointer]:
+          - /url: settings.php
+          - generic [aria-hidden] [ref=f2e43]: ⚙️
+        - link "ตรวจระบบ" [ref=f2e45] [cursor=pointer]:
+          - /url: check_setup.php
+          - generic [aria-hidden] [ref=f2e46]: 🩺
+      - generic [ref=f2e48]: ผลงานจาก AI ครูควรตรวจทานก่อนใช้ทุกครั้ง
+  - heading "สร้างข้อสอบ" [level=1] [ref=f2e49]
+  - paragraph [ref=f2e50]: ตั้งจำนวนข้อและตัวชี้วัดที่ออกสอบ ระบบจะวางตารางวิเคราะห์ข้อสอบ (ตัวชี้วัด × ระดับความยาก) หยิบข้อจากคลังข้อสอบก่อน แล้วให้ AI สร้างเฉพาะข้อที่ยังขาด จากนั้นสลับข้อ/ตัวเลือกเป็นหลายชุด พิมพ์พร้อมกระดาษคำตอบและเฉลย ข้อสอบจาก AI ครูควรตรวจทานทุกข้อก่อนใช้จริง
+  - generic [ref=f2e51]:
+    - generic [ref=f2e52]:
+      - generic [ref=f2e53]:
+        - text: โรงเรียน (พิมพ์หัวกระดาษ)
+        - textbox "โรงเรียน (พิมพ์หัวกระดาษ)" [ref=f2e54]:
+          - /placeholder: เช่น โรงเรียนบ้านตัวอย่าง
+      - generic [ref=f2e55]:
+        - text: ประเภทข้อสอบ
+        - combobox "ประเภทข้อสอบ" [ref=f2e56]:
+          - option "กลางภาค"
+          - option "ปลายภาค" [selected]
+          - option "ท้ายหน่วย"
+          - option "ก่อนเรียน"
+          - option "หลังเรียน"
+      - generic [ref=f2e57]:
+        - text: ปีการศึกษา (พ.ศ.)
+        - textbox "ปีการศึกษา (พ.ศ.)" [ref=f2e58]: "2569"
+      - generic [ref=f2e59]:
+        - text: ชั้น
+        - combobox "ชั้น" [ref=f2e60]:
+          - option "ป.1"
+          - option "ป.2"
+          - option "ป.3"
+          - option "ป.4" [selected]
+          - option "ป.5"
+          - option "ป.6"
+          - option "ม.1"
+          - option "ม.2"
+          - option "ม.3"
+          - option "ม.4"
+          - option "ม.5"
+          - option "ม.6"
+      - generic [ref=f2e61]:
+        - text: วิชา
+        - combobox "วิชา" [ref=f2e62]:
+          - option "ภาษาไทย" [selected]
+          - option "คณิตศาสตร์"
+          - option "วิทยาศาสตร์และเทคโนโลยี"
+          - option "วิทยาการคำนวณ"
+          - option "สังคมศึกษา ศาสนา และวัฒนธรรม"
+          - option "ประวัติศาสตร์"
+          - option "สุขศึกษาและพลศึกษา"
+          - option "ศิลปะ"
+          - option "การงานอาชีพ"
+          - option "ภาษาอังกฤษ"
+      - generic [ref=f2e63]:
+        - text: ภาคเรียน
+        - combobox "ภาคเรียน" [ref=f2e64]:
+          - option "—" [selected]
+          - option "ภาคเรียนที่ 1"
+          - option "ภาคเรียนที่ 2"
+      - generic [ref=f2e65]:
+        - text: เวลาสอบ (นาที)
+        - spinbutton "เวลาสอบ (นาที)" [ref=f2e66]: "60"
+      - generic [ref=f2e67]:
+        - text: จำนวนชุดข้อสอบ (สลับข้อ)
+        - combobox "จำนวนชุดข้อสอบ (สลับข้อ)" [ref=f2e68]:
+          - option "1 ชุด" [selected]
+          - option "2 ชุด (ก ข)"
+          - option "3 ชุด (ก ข ค)"
+          - option "4 ชุด (ก ข ค ง)"
+      - generic [ref=f2e69]:
+        - text: ชื่อข้อสอบ
+        - textbox "ชื่อข้อสอบ" [ref=f2e70]:
+          - /placeholder: ว่างไว้ = ตั้งชื่ออัตโนมัติ
+    - heading "โครงสร้างข้อสอบ" [level=3] [ref=f2e71]
+    - table [ref=f2e72]:
+      - rowgroup [ref=f2e73]:
+        - row [ref=f2e74]:
+          - columnheader "ส่วน" [ref=f2e75]
+          - columnheader "จำนวนข้อ" [ref=f2e76]
+          - columnheader "คะแนนต่อข้อ" [ref=f2e77]
+          - columnheader "รวม" [ref=f2e78]
+      - rowgroup [ref=f2e79]:
+        - row [ref=f2e160]:
+          - cell "ปรนัย 4 ตัวเลือก" [ref=f2e81]
+          - cell [ref=f2e82]:
+            - spinbutton [ref=f2e83]: "3"
+          - cell [ref=f2e84]:
+            - spinbutton [ref=f2e85]: "1"
+          - cell "3" [ref=f2e161]
+        - row [ref=f2e87]:
+          - cell "ถูก / ผิด" [ref=f2e88]
+          - cell [ref=f2e89]:
+            - spinbutton [ref=f2e90]: "0"
+          - cell [ref=f2e91]:
+            - spinbutton [ref=f2e92]: "1"
+          - cell "—" [ref=f2e93]
+        - row [ref=f2e94]:
+          - cell "จับคู่ (นับเป็นคู่)" [ref=f2e95]
+          - cell [ref=f2e96]:
+            - spinbutton [ref=f2e97]: "0"
+          - cell [ref=f2e98]:
+            - spinbutton [ref=f2e99]: "1"
+          - cell "—" [ref=f2e100]
+        - row [ref=f2e101]:
+          - cell "อัตนัย (แสดงวิธีทำ)" [ref=f2e102]
+          - cell [ref=f2e103]:
+            - spinbutton [ref=f2e104]: "0"
+          - cell [ref=f2e105]:
+            - spinbutton [ref=f2e106]: "5"
+          - cell "—" [ref=f2e107]
+      - rowgroup [ref=f2e108]:
+        - row [ref=f2e162]:
+          - cell "คะแนนเต็มทั้งฉบับ" [ref=f2e110]
+          - cell "3" [ref=f2e163]
+    - heading "สัดส่วนความยาก" [level=3] [ref=f2e112]
+    - generic [ref=f2e113]:
+      - generic [ref=f2e114]:
+        - text: ชุดสัดส่วน
+        - combobox "ชุดสัดส่วน" [ref=f2e115]:
+          - option "มาตรฐาน (20/50/30/0)" [selected]
+          - option "ข้อสอบ (10/30/40/20)"
+          - option "ทบทวน (50/40/10/0)"
+          - option "แข่งขัน (0/20/40/40)"
+          - option "กำหนดเอง"
+      - generic [ref=f2e116]:
+        - text: ง่าย %
+        - spinbutton "ง่าย %" [ref=f2e117]: "20"
+      - generic [ref=f2e118]:
+        - text: ปานกลาง %
+        - spinbutton "ปานกลาง %" [ref=f2e119]: "50"
+      - generic [ref=f2e120]:
+        - text: ยาก %
+        - spinbutton "ยาก %" [ref=f2e121]: "30"
+      - generic [ref=f2e122]:
+        - text: ยากมาก %
+        - spinbutton "ยากมาก %" [ref=f2e123]: "0"
+    - heading "ตัวชี้วัดที่ออกสอบ (เลือก 4/4)" [level=3] [ref=f2e124]
+    - generic [ref=f2e125]:
+      - button "เลือกทั้งหมด" [ref=f2e126] [cursor=pointer]
+      - button "ล้าง" [ref=f2e127] [cursor=pointer]
+      - generic [ref=f2e164]: ⚠ เลือกตัวชี้วัด 4 ตัว แต่มีข้อสอบรวม 3 ข้อ ตัวชี้วัดบางตัวจะไม่ถูกออกสอบ
+    - generic [ref=f2e128]:
+      - generic [ref=f2e129]:
+        - checkbox "ท 1.1 ป.4/1 อ่านออกเสียงและอ่านจับใจความสำคัญของเรื่องที่กำหนดได้ถูกต้อง" [checked] [ref=f2e130]
+        - generic [ref=f2e131]:
+          - code [ref=f2e132]: ท 1.1 ป.4/1
+          - text: อ่านออกเสียงและอ่านจับใจความสำคัญของเรื่องที่กำหนดได้ถูกต้อง
+      - generic [ref=f2e133]:
+        - checkbox "ท 1.1 ป.4/2 อธิบายความหมายของคำและข้อความที่อ่านอย่างถูกต้อง" [checked] [ref=f2e134]
+        - generic [ref=f2e135]:
+          - code [ref=f2e136]: ท 1.1 ป.4/2
+          - text: อธิบายความหมายของคำและข้อความที่อ่านอย่างถูกต้อง
+      - generic [ref=f2e137]:
+        - checkbox "ท 2.1 ป.4/1 เขียนสื่อสารและบรรยายข้อมูลได้อย่างชัดเจนและสร้างสรรค์" [checked] [ref=f2e138]
+        - generic [ref=f2e139]:
+          - code [ref=f2e140]: ท 2.1 ป.4/1
+          - text: เขียนสื่อสารและบรรยายข้อมูลได้อย่างชัดเจนและสร้างสรรค์
+      - generic [ref=f2e141]:
+        - checkbox "ท 4.1 ป.4/1 เข้าใจธรรมชาติของภาษาและหลักเกณฑ์การใช้ภาษาไทย" [checked] [ref=f2e142]
+        - generic [ref=f2e143]:
+          - code [ref=f2e144]: ท 4.1 ป.4/1
+          - text: เข้าใจธรรมชาติของภาษาและหลักเกณฑ์การใช้ภาษาไทย
+    - generic [ref=f2e145]:
+      - generic [ref=f2e146]:
+        - text: ขอบเขตเนื้อหาที่ออกสอบ (หน่วย/เรื่อง)
+        - textbox "ขอบเขตเนื้อหาที่ออกสอบ (หน่วย/เรื่อง)" [ref=f2e147]:
+          - /placeholder: ระบบใส่รายชื่อหน่วยให้อัตโนมัติ แก้ไขได้
+          - text: "การอ่านออกเสียงและอ่านจับใจความ, มาตราตัวสะกด, คำที่มี ร ล และคำควบกล้ำ, การเขียนสื่อสารและย่อความ, นิทานและวรรณคดีสำหรับเด็ก, การพูดและการฟังอย่างมีมารยาท, คำที่ใช้ ฤ ฤๅ, ชนิดของคำ: นาม สรรพนาม กริยา, ประโยคและส่วนประกอบของประโยค, การเขียนเรื่องจากภาพและจินตนาการ, สำนวนสุภาษิตและคำพังเพย, การอ่านบทร้อยกรองและท่องจำ"
+      - generic [ref=f2e148]:
+        - text: ข้อเสนอแนะเพิ่มเติมถึง AI (ไม่บังคับ)
+        - textbox "ข้อเสนอแนะเพิ่มเติมถึง AI (ไม่บังคับ)" [ref=f2e149]:
+          - /placeholder: เช่น เน้นโจทย์สถานการณ์ในชีวิตประจำวัน
+    - generic [ref=f2e150]:
+      - checkbox "หยิบข้อจากคลังข้อสอบก่อน (ตรงชั้น วิชา ตัวชี้วัด และระดับ) แล้วให้ AI สร้างเฉพาะข้อที่ขาด" [checked] [ref=f2e151]
+      - text: หยิบข้อจากคลังข้อสอบก่อน (ตรงชั้น วิชา ตัวชี้วัด และระดับ) แล้วให้ AI สร้างเฉพาะข้อที่ขาด
+    - generic [ref=f2e152]:
+      - checkbox "🖼️ สร้างรูปภาพและแผนภาพประกอบโจทย์ในแต่ละข้อ (เรขาคณิต เศษส่วน วงจรไฟฟ้า การทดลอง ฯลฯ)" [checked] [ref=f2e153]
+      - text: 🖼️ สร้างรูปภาพและแผนภาพประกอบโจทย์ในแต่ละข้อ (เรขาคณิต เศษส่วน วงจรไฟฟ้า การทดลอง ฯลฯ)
+    - generic [ref=f2e154]:
+      - button "ดูตารางวิเคราะห์ / ข้อที่มีในคลัง" [ref=f2e155] [cursor=pointer]
+      - button "สร้างข้อสอบ" [ref=f2e156] [cursor=pointer]
+  - generic [ref=f2e165]:
+    - generic [ref=f2e166]:
+      - generic [ref=f2e167]:
+        - generic [ref=f2e168]:
+          - button "ตารางวิเคราะห์" [ref=f2e169] [cursor=pointer]
+          - button "แก้ไขข้อสอบ" [ref=f2e170] [cursor=pointer]
+          - button "ข้อสอบ" [active] [ref=f2e171] [cursor=pointer]
+          - button "กระดาษคำตอบ" [ref=f2e172] [cursor=pointer]
+          - button "เฉลย" [ref=f2e173] [cursor=pointer]
+        - generic [ref=f2e174]:
+          - button "บันทึก" [ref=f2e175] [cursor=pointer]
+          - button "พิมพ์ / PDF แท็บนี้" [ref=f2e176] [cursor=pointer]
+      - generic [ref=f2e177]:
+        - checkbox "ตอนบันทึก เก็บข้อที่ AI สร้าง/ครูแก้ไขเข้าคลังข้อสอบด้วย" [checked] [ref=f2e178]
+        - text: ตอนบันทึก เก็บข้อที่ AI สร้าง/ครูแก้ไขเข้าคลังข้อสอบด้วย
+      - generic [ref=f2e179]: "ได้ข้อสอบ 3 ข้อ: จากคลัง 0 · AI สร้าง 3 · คะแนนเต็ม 3"
+    - generic [ref=f2e274]:
+      - heading [level=2]
+      - generic [ref=f2e275]: ข้อสอบปลายภาค ภาษาไทย ป.4
+      - generic [ref=f2e276]: วิชาภาษาไทย ชั้นป.4 ปีการศึกษา 2569
+      - generic [ref=f2e277]: เวลา 60 นาที · คะแนนเต็ม 3 คะแนน · ทั้งหมด 3 ข้อ
+      - generic [ref=f2e278]:
+        - generic [ref=f2e279]: ชื่อ-สกุล
+        - generic [ref=f2e281]: ชั้น
+        - generic [ref=f2e283]: เลขที่
+      - generic [ref=f2e285]: ตอนที่ 1 ปรนัย 4 ตัวเลือก (3 ข้อ ข้อละ 1 คะแนน รวม 3 คะแนน)
+      - generic [ref=f2e286]: "คำชี้แจง: เลือกคำตอบที่ถูกต้องที่สุดเพียงข้อเดียว แล้วฝนวงกลมในกระดาษคำตอบ"
+      - generic [ref=f2e287]:
+        - generic [ref=f2e288]: "1."
+        - text: จากหลักไตรยางศ์ (อักษร 3 หมู่) พยัญชนะในข้อใดจัดอยู่ในกลุ่ม "อักษรสูง" ทั้งหมด?
+        - img [ref=f2e290]:
+          - generic [ref=f2e291]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f2e293]: อักษรสูง (11)
+          - generic [ref=f2e294]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f2e295]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f2e296]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f2e298]: อักษรกลาง (9)
+          - generic [ref=f2e299]: ก จ ด ต บ ป
+          - generic [ref=f2e300]: อ ฎ ฏ
+          - generic [ref=f2e301]: ไก่จิกเด็กตายฯ
+          - generic [ref=f2e303]: อักษรต่ำ (24)
+          - generic [ref=f2e304]: ต่ำเดี่ยว (10)
+          - generic [ref=f2e305]: ต่ำคู่ (14)
+          - generic [ref=f2e306]: ค ง ช ซ ท น พ...
+        - generic [ref=f2e307]:
+          - generic [ref=f2e308]: ก. ข, ฉ, ถ, ส, ห
+          - generic [ref=f2e309]: ข. ก, จ, ด, ต, บ
+          - generic [ref=f2e310]: ค. ค, ง, ช, ซ, ท
+          - generic [ref=f2e311]: ง. ป, อ, ฎ, ฏ, ผ
+      - generic [ref=f2e312]:
+        - generic [ref=f2e313]: "2."
+        - text: ข้อใดเป็น "ประโยคความเดียว" ที่มีใจความสมบูรณ์เพียงใจความเดียว?
+        - img [ref=f2e315]:
+          - generic [ref=f2e316]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f2e318]: อักษรสูง (11)
+          - generic [ref=f2e319]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f2e320]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f2e321]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f2e323]: อักษรกลาง (9)
+          - generic [ref=f2e324]: ก จ ด ต บ ป
+          - generic [ref=f2e325]: อ ฎ ฏ
+          - generic [ref=f2e326]: ไก่จิกเด็กตายฯ
+          - generic [ref=f2e328]: อักษรต่ำ (24)
+          - generic [ref=f2e329]: ต่ำเดี่ยว (10)
+          - generic [ref=f2e330]: ต่ำคู่ (14)
+          - generic [ref=f2e331]: ค ง ช ซ ท น พ...
+        - generic [ref=f2e332]:
+          - generic [ref=f2e333]: ก. คุณพ่อรดน้ำต้นไม้ในสวนหน้าบ้านทุกเช้า
+          - generic [ref=f2e334]: ข. ฉันชอบอ่านหนังสือแต่น้องชอบดูโทรทัศน์
+          - generic [ref=f2e335]: ค. คุณครูชมเชยนักเรียนที่ตั้งใจทำเวรทำความสะอาด
+          - generic [ref=f2e336]: ง. ฝนตกหนักมากจึงทำให้เกิดน้ำท่วมขัง
+      - generic [ref=f2e337]:
+        - generic [ref=f2e338]: "3."
+        - text: คำว่า "ทูลเกล้าฯ ถวาย" ใช้กับการถวายสิ่งของลักษณะใดในราชาศัพท์?
+        - img [ref=f2e340]:
+          - generic [ref=f2e341]: ไตรยางศ์ (อักษร 3 หมู่)
+          - generic [ref=f2e343]: อักษรสูง (11)
+          - generic [ref=f2e344]: ข ฃ ฉ ฐ ถ
+          - generic [ref=f2e345]: ผ ฝ ศ ษ ส ห
+          - generic [ref=f2e346]: ผีฝากถุงข้าวสารให้ฉัน
+          - generic [ref=f2e348]: อักษรกลาง (9)
+          - generic [ref=f2e349]: ก จ ด ต บ ป
+          - generic [ref=f2e350]: อ ฎ ฏ
+          - generic [ref=f2e351]: ไก่จิกเด็กตายฯ
+          - generic [ref=f2e353]: อักษรต่ำ (24)
+          - generic [ref=f2e354]: ต่ำเดี่ยว (10)
+          - generic [ref=f2e355]: ต่ำคู่ (14)
+          - generic [ref=f2e356]: ค ง ช ซ ท น พ...
+        - generic [ref=f2e357]:
+          - generic [ref=f2e358]: ก. ของที่มีน้ำหนักเบาและยกประคองด้วยมือได้
+          - generic [ref=f2e359]: ข. ของที่มีน้ำหนักมากหรือขนาดใหญ่ เช่น รถยนต์ หรือที่ดิน
+          - generic [ref=f2e360]: ค. อาหารและเครื่องดื่มทุกประเภท
+          - generic [ref=f2e361]: ง. เงินสดและตั๋วสัญญาใช้เงินเท่านั้น
+  - generic [ref=f2e157]:
+    - strong [ref=f2e158]: ข้อสอบที่บันทึกไว้
+    - generic [ref=f2e159]: ยังไม่มีข้อสอบที่บันทึก

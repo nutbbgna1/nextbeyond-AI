@@ -1,0 +1,118 @@
+@page{size:A4;margin:12mm}
+/* หน้าสร้างข้อสอบ */
+.xh{margin:18px 0 6px;font-size:15px}
+.xchk{display:block;font-size:14px}
+.xparts input{width:90px;padding:6px 8px}
+.xparts td.sum{font-weight:600}
+.xind{max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;background:#fff}
+.xind label{display:flex;gap:8px;align-items:flex-start;padding:3px 0}
+.xind code{font-weight:700;white-space:nowrap}
+.xplan{font-size:13px;margin-top:10px;color:#444}
+.xplan table{margin-top:6px}
+.xtabs{display:flex;gap:4px;flex-wrap:wrap}
+.xtabs button{background:#fff;color:#555;border:1px solid var(--line);padding:7px 12px;border-radius:10px;font-weight:600;font-size:14px}
+.xtabs button.on{background:var(--pink);color:#fff;border-color:var(--pink)}
+.xwarn{background:#fff8e6;border:1px solid #f1d58a;border-radius:10px;padding:8px 12px;font-size:13px;margin:6px 0}
+.xver{font-size:13px;margin:6px 0}
+.xver button{padding:3px 10px;margin-right:4px;font-size:13px}
+.xver button.on{background:var(--pink);color:#fff}
+.tabpane{display:none}
+.tabpane.on{display:block}
+
+.xatbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.xatbl th,.xatbl td{border:1px solid #bbb;padding:5px 7px;text-align:center}
+.xatbl td.l,.xatbl th.l{text-align:left}
+.xatbl tfoot td{font-weight:700;background:var(--pink-soft)}
+.xatbl .dim{color:#bbb}
+
+/* การ์ดแก้ไขข้อ */
+.xpart h3{margin:18px 0 6px}
+.xcard{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;background:#fff}
+.xcard.none{border-color:#e26a6a;background:#fff4f4}
+.xcard .hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:#666;margin-bottom:6px}
+.xcard .hd b{color:#222;font-size:14px}
+.xcard textarea,.xcard input[type=text]{width:100%;font:inherit;padding:6px 8px}
+.xcard textarea{min-height:46px;resize:vertical}
+.xcard .chs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.xcard .ch{display:flex;gap:6px;align-items:center}
+.xcard .ch input[type=text]{flex:1}
+.xcard .mt{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.badge{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;border:1px solid #ddd;background:#f6f6f6}
+.badge.bank{background:#eaf6ee;border-color:#bfe0c9}
+.badge.ai{background:#eef3ff;border-color:#c5d3f5}
+.badge.edited{background:#fff4e0;border-color:#f1d58a}
+.badge.none{background:#ffe6e6;border-color:#e9a1a1}
+
+/* กระดาษข้อสอบ */
+.xpaper{font-family:'Sarabun',sans-serif;font-size:12.5pt;line-height:1.5;color:#000;background:#fff;padding:12mm 14mm;margin:10px auto;max-width:210mm;box-shadow:0 1px 6px #0002;box-sizing:border-box}
+.xpaper h2{text-align:center;margin:0 0 4px;font-size:15pt}
+.xtop-bar{display:flex;justify-content:space-between;align-items:center;font-size:10.5pt;color:#333;margin-bottom:4px;border-bottom:1px solid #cbd5e1;padding-bottom:3px}
+.xbanner-box{border:2px double #334155;background:#f1f5f9;border-radius:10px;padding:8px 14px;margin:6px 0 8px;text-align:center}
+.xbanner-title{font-size:16pt;font-weight:700;color:#0f172a;letter-spacing:0.2px}
+.xpaper .meta{text-align:center;font-size:11.5pt;margin:2px 0;color:#1e293b}
+.xpaper .who{display:flex;justify-content:space-between;gap:8px;border-top:1.5px solid #000;border-bottom:1.5px solid #000;padding:4px 0;margin:8px 0;font-size:11.5pt}
+.xpaper .who>span{display:flex;align-items:flex-end;gap:4px;flex:1}.xpaper .who>span:first-child{flex:3}.xpaper .who span.ln{flex:1;border-bottom:1px dotted #000;min-width:12mm}
+.xpaper .vtag{border:1.8px solid #000;padding:1px 8px;font-weight:700;font-size:12pt;border-radius:6px;background:#fff}
+.xpaper .ptitle{font-weight:700;margin:10px 0 2px;font-size:12.5pt;border-bottom:1px solid #e2e8f0;padding-bottom:2px}
+.xpaper .pins{font-size:11.5pt;margin-bottom:6px;font-style:italic}
+.xpart-items.cols-2{column-count:2;column-gap:9mm;column-rule:1px solid #cbd5e1}
+.xq{break-inside:avoid;page-break-inside:avoid;margin:0 0 8px;padding-bottom:2px}
+.xq .qn{display:inline-block;min-width:1.7em;font-weight:700}
+.xq .chs{display:grid;grid-template-columns:1fr 1fr;gap:1px 12px;margin:2px 0 0 1.7em}
+.xq .chs.one{grid-template-columns:1fr}
+.xq .ans-line{display:block;border-bottom:1px dotted #000;height:1.7em}
+.xmatch{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;break-inside:avoid;margin:6px 0 10px}
+.xmatch .opt{margin-left:0}
+.xline{border-bottom:1px dotted #555;height:1.75em}
+.xq .tfb{margin-left:1.7em}
+.xq-fig{margin:5px 0 6px 0.8em;text-align:center}
+.xq-fig svg,.xq-fig img{max-width:100%;max-height:165px;height:auto;display:inline-block}
+.xq-fig-caption{font-size:10.5pt;color:#555;margin-top:2px}
+.fig-preview{margin:8px 0;padding:6px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;text-align:center}
+.fig-preview svg,.fig-preview img{max-height:140px;display:inline-block}
+
+/* ข้อสอบออนไลน์ (Online Exam Tab) */
+.online-box{padding:12px 4px;font-family:'Sarabun',sans-serif}
+.online-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid #e2e8f0}
+.btn-online-open{display:inline-flex;align-items:center;gap:6px;background:#2563eb;color:#fff;text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:700;font-size:14px}
+.btn-online-open:hover{background:#1d4ed8}
+.online-share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#eff6ff;border:1px solid #bfdbfe;padding:10px 12px;border-radius:10px;margin:12px 0}
+.online-section{margin-top:16px;padding-top:12px;border-top:1px solid #e2e8f0}
+.oq-card{border:1px solid #cbd5e1;border-radius:12px;padding:14px 16px;margin:10px 0;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+.oq-no{display:inline-block;background:#eff6ff;color:#1d4ed8;font-weight:700;padding:2px 8px;border-radius:6px;font-size:13px}
+.oq-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media(max-width:680px){.oq-choices{grid-template-columns:1fr}}
+.oq-choice{display:flex;align-items:flex-start;gap:8px;padding:8px 12px;border:1px solid #e2e8f0;border-radius:8px;cursor:pointer;background:#f8fafc;transition:all .15s}
+.oq-choice:hover{border-color:#93c5fd;background:#eff6ff}
+.oq-input{width:100%;margin-top:8px;padding:8px 10px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px}
+.oq-feedback{margin-top:10px;padding:8px 12px;border-radius:8px;font-size:13px}
+.oq-feedback.ok{background:#dcfce7;border:1px solid #86efac;color:#14532d}
+.oq-feedback.wrong{background:#fee2e2;border:1px solid #fca5a5;color:#7f1d1d}
+.online-score-banner{background:#ecfdf5;border:2px solid #10b981;color:#065f46;padding:14px 16px;border-radius:12px;margin:12px 0;font-size:15px}
+
+/* กระดาษคำตอบ */
+.bub{display:inline-block;width:6.2mm;height:6.2mm;border:1.2px solid #000;border-radius:50%;text-align:center;font-size:9.5pt;line-height:5.2mm;margin:0 .9mm;vertical-align:middle}
+.arow{display:flex;align-items:center;gap:4px;margin:1.6mm 0;font-size:11.5pt;break-inside:avoid}
+.arow .n{display:inline-block;width:8mm;text-align:right;margin-right:2mm}
+.acols{columns:2;column-gap:12mm}
+.xpaper.sheet .box{box-sizing:border-box;border:1.5px solid #000;padding:3mm 4mm;margin:3mm 0;break-inside:avoid}
+.xpaper .scoretbl{border-collapse:collapse;margin-top:6px}
+.xpaper .scoretbl td,.xpaper .scoretbl th{border:1px solid #000;padding:3px 10px;text-align:center;font-size:11pt;min-width:22mm}
+
+/* เฉลย */
+.ktbl{border-collapse:collapse;width:100%;font-size:11.5pt;margin:4px 0 10px}
+.ktbl td,.ktbl th{border:1px solid #888;padding:3px 6px;text-align:center}
+.ktbl td.l{text-align:left}
+.ksol{break-inside:avoid;margin:6px 0;font-size:12pt}
+
+@media print{
+  body{background:#fff}
+  .tabpane{display:none!important}
+  .tabpane.on{display:block!important}
+  .panel{box-shadow:none;border:0;padding:0;background:none}
+  .xpaper{box-shadow:none;margin:0;padding:0;max-width:none;page-break-after:always;break-after:page}
+  .xpaper:last-child{page-break-after:auto;break-after:auto}
+  .xpaper.off{display:block!important}
+  .xatbl th,.xatbl td{border-color:#000}
+}
+.xpaper.off{display:none}

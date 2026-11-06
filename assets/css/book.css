@@ -1,0 +1,39 @@
+/* หน้าปก / คำนำ / สารบัญ ของเล่มใบงาน (ใช้ร่วมกับ .page ใน style.css) */
+.book-entry { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 6px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+.book-entry .no { flex: 0 0 auto; font-weight: 700; color: var(--pink); min-width: 4.5em; }
+.book-entry .nm { flex: 1 1 220px; }
+.book-entry .nm small { color: var(--muted); display: block; }
+.book-entry input.ch { width: 170px; padding: 5px 8px; font-size: 13px; }
+.pick-row { padding: 4px 0 4px 18px; font-size: 13px; }
+.pick-box { margin: 4px 0 8px; padding: 8px 12px; border: 1px dashed var(--line); border-radius: 10px; background: #fcfafb; }
+
+.page.cover { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 16mm 14mm; }
+.page.cover .frame { inset: 6mm; border-width: 3px; }
+.cv-title { position: relative; z-index: 1; margin-top: 8mm; font-weight: 700; font-size: 34pt; line-height: 1.25; color: #d11a5a; }
+.cv-sub { position: relative; z-index: 1; margin-top: 3mm; font-size: 17pt; font-weight: 600; }
+.cv-img { position: relative; z-index: 1; width: 120mm; height: 120mm; object-fit: contain; margin: 8mm 0 4mm; }
+.cv-img.ph { display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc; border-radius: 12px; color: #aaa; font-size: 11pt; }
+.cv-tag { position: relative; z-index: 1; font-size: 15pt; font-style: italic; margin-top: 2mm; }
+.cv-name { position: relative; z-index: 1; margin-top: auto; width: 100%; display: flex; gap: 8px; font-size: 13pt; padding: 0 6mm; }
+.cv-name .ln { flex: 1; border-bottom: 1px dotted #444; }
+.cv-name .ln.s { flex: 0 0 22mm; }
+.cv-class { position: relative; z-index: 1; margin-top: 6mm; font-weight: 700; font-size: 15pt; }
+.cv-author { position: relative; z-index: 1; margin-top: 1mm; font-size: 13pt; color: #444; min-height: 1.5em; }
+
+.page.plain .bk-head { position: relative; z-index: 1; text-align: center; margin: 8mm 0 8mm; }
+.page.plain .bk-head span { display: inline-block; border: 2px dashed #222; border-radius: 999px; padding: 1mm 14mm; font-weight: 700; font-size: 20pt; }
+.bk-preface { position: relative; z-index: 1; padding: 0 12mm; font-size: 14pt; line-height: 1.7; }
+.bk-preface p { margin: 0 0 4mm; text-indent: 12mm; }
+.bk-toc { position: relative; z-index: 1; padding: 0 12mm; }
+.toc-ch { font-weight: 700; margin: 4mm 0 1mm; color: #d11a5a; }
+.toc-row { display: flex; gap: 2mm; align-items: baseline; font-size: 14pt; line-height: 1.55; }
+.toc-row .l { white-space: nowrap; font-weight: 600; }
+.toc-row .d { flex: 1; border-bottom: 2px dotted #888; transform: translateY(-1.5mm); min-width: 6mm; }
+.toc-row .t { flex: 0 1 auto; }
+.toc-row .p { flex: 0 0 12mm; text-align: right; font-weight: 600; }
+/* เล่มมัธยม: ปก/คำนำ/สารบัญแบบทางการ */
+.page.cover.formal-cover, .page.plain.formal-plain { font-family: "Sarabun", sans-serif; }
+.page.cover.formal-cover .frame, .page.plain.formal-plain .frame { border-style: solid; border-width: 1.5px; border-radius: 0; }
+.page.cover.formal-cover .cv-title { color: #111; }
+.page.plain.formal-plain .bk-head span { border-style: solid; border-radius: 3mm; }
+.page.plain.formal-plain .toc-ch { color: #111; }

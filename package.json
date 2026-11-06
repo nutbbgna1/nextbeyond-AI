@@ -1,0 +1,24 @@
+{
+  "name": "teacher-ai",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "tsc --noEmit",
+    "build:sites-preview": "tsx scripts/build-sites-preview.ts",
+    "lint": "tsc --noEmit",
+    "test": "tsx --test src/server/exam.test.ts",
+    "start": "tsx server.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^3.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
